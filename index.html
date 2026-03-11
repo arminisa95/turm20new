@@ -8,6 +8,7 @@
     <meta name="description" content="Das Sommertheater im Turm 20 - am Fuße des Pöstlingbergs. Genießen Sie mit uns das Theater & die Sommerkonzerte im malerischen Ambiente des Turm 20 in Linz.">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Serif+Display:ital,wght@0,300;0,400;1,300&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body id="top">
     <!-- Navigation -->
@@ -476,6 +477,22 @@
         currentFotoSlide = nextIndex;
         showFotoSlide(currentFotoSlide);
     }
+
+    // Mobile Menu Toggle
+    function toggleMenu() {
+        const menu = document.getElementById('main-nav');
+        menu.classList.toggle('active');
+    }
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        const menu = document.getElementById('main-nav');
+        const menuToggle = document.querySelector('.mobile-menu-toggle');
+        
+        if (!menu.contains(event.target) && !menuToggle.contains(event.target)) {
+            menu.classList.remove('active');
+        }
+    });
 
     // Initialize slideshow when DOM is loaded
     initializeFotoshow();

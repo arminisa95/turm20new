@@ -1,0 +1,440 @@
+/* Responsive Design für Tablets und Mobile Phones */
+
+/* Tablets (768px - 1024px) */
+@media screen and (max-width: 1024px) {
+    
+    /* Navigation */
+    .nav-container {
+        padding: 1rem;
+    }
+    
+    .nav-title {
+        font-size: 1.5rem;
+        left: 80px;
+    }
+    
+    .menu {
+        font-size: 0.9rem;
+    }
+    
+    .menu li {
+        margin: 0 1rem;
+    }
+    
+    /* Hero Section */
+    .hero-image {
+        max-width: 800px;
+        max-height: 800px;
+        width: 800px;
+        height: 800px;
+    }
+    
+    .ticket-button {
+        font-size: 2.5rem;
+        letter-spacing: 5px;
+    }
+    
+    /* Partner & Team Slider */
+    .partner-slider-container,
+    .team-slider-container {
+        max-width: 900px;
+        padding: 0 60px;
+    }
+    
+    .partner-member,
+    .team-member {
+        flex: 0 0 350px;
+    }
+    
+    .partner-member img,
+    .team-member img {
+        height: 400px;
+    }
+    
+    /* Foto Show */
+    .fotoshow {
+        height: 500px;
+    }
+    
+    /* Location */
+    .location-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .location-map iframe {
+        height: 350px;
+    }
+    
+    /* Footer */
+    .footer-partners img {
+        max-height: 40px;
+    }
+}
+
+/* Mobile Phones (max-width: 767px) */
+@media screen and (max-width: 767px) {
+    
+    /* Navigation */
+    .top-bar {
+        padding: 0.5rem;
+    }
+    
+    .nav-container {
+        padding: 0.5rem;
+    }
+    
+    .logo {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        margin: 0 auto 1rem;
+        display: block;
+        text-align: center;
+    }
+    
+    .logo-image {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .nav-title {
+        position: static;
+        text-align: center;
+        font-size: 1.2rem;
+        margin: 0 auto 1rem;
+        left: auto;
+        color: rgba(107, 129, 109, 0.6);
+    }
+    
+    .mobile-menu-toggle {
+        display: block;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: none;
+        border: none;
+        color: var(--white);
+        font-size: 1.5rem;
+        cursor: pointer;
+        z-index: 1001;
+    }
+    
+    .menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        height: 100vh;
+        background: rgba(44, 32, 19, 0.98);
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 5rem 2rem 2rem;
+        transition: right 0.3s ease;
+        z-index: 1000;
+        backdrop-filter: blur(10px);
+    }
+    
+    .menu.active {
+        right: 0;
+    }
+    
+    .menu li {
+        margin: 1rem 0;
+        text-align: center;
+    }
+    
+    .menu a {
+        font-size: 1.2rem;
+        padding: 1rem;
+        display: block;
+        border-bottom: 1px solid rgba(107, 129, 109, 0.2);
+    }
+    
+    /* Hero Section */
+    .hero {
+        padding: 2rem 1rem;
+        min-height: 100vh;
+    }
+    
+    .hero-image {
+        max-width: 300px;
+        max-height: 300px;
+        width: 300px;
+        height: 300px;
+    }
+    
+    .hero-content {
+        top: 70%;
+    }
+    
+    .ticket-button {
+        font-size: 1.8rem;
+        letter-spacing: 3px;
+        padding: 1rem 2rem;
+    }
+    
+    /* Section Headers */
+    .termine-header h2,
+    .partner-header h2,
+    .team-header h2,
+    .fotoshow-header h2,
+    .textwrap h2 {
+        font-size: 2rem;
+    }
+    
+    .termine-header .time,
+    .partner-header .time,
+    .team-header .time,
+    .fotoshow-header .time,
+    .textwrap .time {
+        font-size: 1rem;
+    }
+    
+    /* Termine Slider */
+    .terminwrap {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .termin {
+        width: 100%;
+        max-width: 300px;
+        margin-bottom: 1rem;
+    }
+    
+    .termin h3 {
+        font-size: 1.8rem;
+    }
+    
+    .termin h4 {
+        font-size: 0.9rem;
+    }
+    
+    .termin .event-title {
+        font-size: 0.9rem;
+    }
+    
+    .termin p {
+        font-size: 0.85rem;
+    }
+    
+    /* Partner & Team Slider */
+    .partner-slider-container,
+    .team-slider-container {
+        max-width: 100%;
+        padding: 0 20px;
+    }
+    
+    .partner-member,
+    .team-member {
+        flex: 0 0 280px;
+    }
+    
+    .partner-member img,
+    .team-member img {
+        height: 350px;
+    }
+    
+    .partner-name,
+    .team-name {
+        font-size: 1rem;
+    }
+    
+    /* Klick-Bereiche für Mobile */
+    .partner-click-area,
+    .team-click-area {
+        width: 40%;
+    }
+    
+    .partner-click-area-left,
+    .team-click-area-left {
+        left: -40vw;
+        width: calc(40% + 40vw);
+    }
+    
+    .partner-click-area-right,
+    .team-click-area-right {
+        right: -40vw;
+        width: calc(40% + 40vw);
+    }
+    
+    /* Foto Show */
+    .fotoshow {
+        height: 400px;
+    }
+    
+    .fotoshow-header {
+        margin-bottom: 2rem;
+    }
+    
+    /* Location */
+    .location-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .location-info h3 {
+        font-size: 1.3rem;
+    }
+    
+    .location-info p {
+        font-size: 1rem;
+    }
+    
+    .location-map iframe {
+        height: 300px;
+    }
+    
+    /* Kontakt */
+    .contact-info {
+        padding: 0 1rem;
+    }
+    
+    .contact-info h3 {
+        font-size: 1.3rem;
+    }
+    
+    .contact-info p {
+        font-size: 1rem;
+    }
+    
+    /* Was war Section */
+    .program-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .program-card {
+        padding: 1.5rem;
+    }
+    
+    .program-card h3 {
+        font-size: 1.3rem;
+    }
+    
+    .program-card p {
+        font-size: 1rem;
+    }
+    
+    /* Footer */
+    footer {
+        padding: 1.5rem 1rem;
+    }
+    
+    .footer-partners {
+        gap: 1rem;
+    }
+    
+    .footer-partners img {
+        max-height: 30px;
+    }
+    
+    footer nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    footer nav a {
+        font-size: 0.9rem;
+    }
+    
+    footer p {
+        font-size: 0.8rem;
+    }
+    
+    /* Fixed Logo */
+    .fixed-logo {
+        bottom: 10px;
+        left: 10px;
+    }
+    
+    .fixed-logo span {
+        font-size: 0.7rem;
+    }
+    
+    .fixed-logo strong {
+        font-size: 0.9rem;
+    }
+}
+
+/* Kleine Mobile Phones (max-width: 480px) */
+@media screen and (max-width: 480px) {
+    
+    /* Hero Section */
+    .hero-image {
+        max-width: 250px;
+        max-height: 250px;
+        width: 250px;
+        height: 250px;
+    }
+    
+    .ticket-button {
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+        padding: 0.8rem 1.5rem;
+    }
+    
+    /* Section Headers */
+    .termine-header h2,
+    .partner-header h2,
+    .team-header h2,
+    .fotoshow-header h2,
+    .textwrap h2 {
+        font-size: 1.8rem;
+    }
+    
+    /* Partner & Team Slider */
+    .partner-member,
+    .team-member {
+        flex: 0 0 250px;
+    }
+    
+    .partner-member img,
+    .team-member img {
+        height: 300px;
+    }
+    
+    /* Foto Show */
+    .fotoshow {
+        height: 350px;
+    }
+    
+    /* Mobile Menu */
+    .menu {
+        width: 90%;
+    }
+    
+    .menu a {
+        font-size: 1.1rem;
+    }
+}
+
+/* Landscape Orientation für Mobile */
+@media screen and (max-height: 600px) and (orientation: landscape) {
+    
+    .menu {
+        padding: 3rem 2rem 2rem;
+    }
+    
+    .menu li {
+        margin: 0.5rem 0;
+    }
+    
+    .fotoshow {
+        height: 300px;
+    }
+    
+    .hero {
+        min-height: auto;
+        padding: 1rem;
+    }
+    
+    .hero-image {
+        max-width: 200px;
+        max-height: 200px;
+        width: 200px;
+        height: 200px;
+    }
+}
