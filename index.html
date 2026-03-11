@@ -9,24 +9,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Serif+Display:ital,wght@0,300;0,400;1,300&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body id="top">
     <!-- Navigation -->
     <div class="top-bar" id="top-bar-menu">
         <div class="nav-container">
-            <a href="#" class="logo">
+            <a href="#top" class="logo">
                 <img src="admin-ajax.png" alt="Turm 20 Logo" class="logo-image">
             </a>
-            <h1 class="nav-title">Sommertheater Turm 20</h1>
+            <h1 class="nav-title">Caecilia</h1>
             <button class="mobile-menu-toggle" onclick="toggleMenu()">☰</button>
             <ul class="menu" id="main-nav">
                 <li><a href="#termine">Tickets & Termine</a></li>
-                <li><a href="#location">Location</a></li>
                 <li><a href="#partner">Partner</a></li>
                 <li><a href="#team">Team</a></li>
                 <li><a href="#waswar">Was war?</a></li>
+                <li><a href="#location">Location</a></li>
                 <li><a href="#kontakt">Kontakt</a></li>
-                <li><a href="impressum.html">Impressum</a></li>
-            </ul>
+                            </ul>
         </div>
     </div>
 
@@ -128,35 +127,19 @@
         </section>
     </section>
 
-    <!-- Location Section -->
-    <section id="location">
-        <h2>Location</h2>
-        <p>Der Turm 20 am Fuße des Pöstlingbergs</p>
-        <div class="location-content">
-            <div class="location-info">
-                <h3>Anfahrt</h3>
-                <p>Der Turm 20 befindet sich in malerischer Lage am Fuße des Pöstlingbergs in Linz.</p>
-                <p><strong>Adresse:</strong><br>
-                Kreuzweg 42<br>
-                4040 Linz</p>
-                <p><strong>Öffentliche Verkehrsmittel:</strong><br>
-                Mit der Pöstlingbergbahn oder Bus erreichbar</p>
-            </div>
-            <div class="location-map">
-                <!-- Google Maps Embed -->
-                <iframe 
-                    src="https://maps.google.com/maps?ll=48.32225303120821,14.268526151984537&z=17&t=m&output=embed"
-                    width="100%" 
-                    height="400" 
-                    style="border:0; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);"
-                    allowfullscreen="" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
-            </div>
+    <!-- Foto Show Section -->
+    <section id="fotoshow">
+        <div class="fotoshow-header">
+            <h2>Fotoshow</h2>
+            <p class="time">Impressionen vom Sommertheater</p>
+        </div>
+        
+        <div class="fotoshow" id="fotoshow-container">
+            <!-- Bilder werden dynamisch via JavaScript geladen -->
         </div>
     </section>
 
+    
     <!-- Partner Section -->
     <section id="partner">
         <div class="partner-header">
@@ -289,6 +272,35 @@
         </div>
     </section>
 
+    <!-- Location Section -->
+    <section id="location">
+        <h2>Location</h2>
+        <p>Der Turm 20 am Fuße des Pöstlingbergs</p>
+        <div class="location-content">
+            <div class="location-info">
+                <h3>Anfahrt</h3>
+                <p>Der Turm 20 befindet sich in malerischer Lage am Fuße des Pöstlingbergs in Linz.</p>
+                <p><strong>Adresse:</strong><br>
+                Kreuzweg 42<br>
+                4040 Linz</p>
+                <p><strong>Öffentliche Verkehrsmittel:</strong><br>
+                Mit der Pöstlingbergbahn oder Bus erreichbar</p>
+            </div>
+            <div class="location-map">
+                <!-- Google Maps Embed -->
+                <iframe 
+                    src="https://maps.google.com/maps?ll=48.32225303120821,14.268526151984537&z=17&t=m&output=embed"
+                    width="100%" 
+                    height="400" 
+                    style="border:0; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);"
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
     <!-- Kontakt Section -->
     <section id="kontakt">
         <h2>Kontakt & Info</h2>
@@ -384,6 +396,90 @@
     }
 
     
+    // Foto Show Auto-Slideshow - Dynamische Bilder aus fotoshow-Ordner
+    let currentFotoSlide = 0;
+    let fotoSlides = [];
+    let totalFotoSlides = 0;
+
+    // Liste der Bilder aus fotoshow-Ordner (wird automatisch aktualisiert)
+    const fotoshowImages = [
+        'fotoshow/Screenshot 2026-03-11 at 21-35-12 Instagram.png',
+        'fotoshow/Screenshot 2026-03-11 at 21-35-33 Instagram.png',
+        'fotoshow/Screenshot 2026-03-11 at 21-36-23 Instagram.png',
+        'fotoshow/Screenshot 2026-03-11 at 21-37-02 Instagram.png',
+        'fotoshow/Screenshot 2026-03-11 at 21-37-10 Instagram.png',
+        'fotoshow/Screenshot 2026-03-11 at 21-37-16 Instagram.png',
+        'fotoshow/Screenshot 2026-03-11 at 21-37-33 Instagram.png',
+        'fotoshow/Screenshot 2026-03-11 at 21-37-42 Instagram.png',
+        'fotoshow/Screenshot 2026-03-11 at 21-37-54 Instagram.png'
+    ];
+
+    function initializeFotoshow() {
+        const fotoshowContainer = document.getElementById('fotoshow-container');
+        
+        // Erstelle Slide-Elemente für jedes Bild
+        fotoshowImages.forEach((imagePath, index) => {
+            const slide = document.createElement('div');
+            slide.className = 'foto-slide';
+            if (index === 0) {
+                slide.classList.add('active');
+            }
+            
+            const img = document.createElement('img');
+            img.src = imagePath;
+            img.alt = `Sommertheater Impression ${index + 1}`;
+            img.onerror = function() {
+                console.warn(`Bild nicht gefunden: ${imagePath}`);
+                slide.style.display = 'none';
+            };
+            
+            slide.appendChild(img);
+            fotoshowContainer.appendChild(slide);
+        });
+        
+        // Update slide references
+        fotoSlides = document.querySelectorAll('.foto-slide');
+        totalFotoSlides = fotoSlides.length;
+        
+        // Start slideshow nur wenn Bilder vorhanden
+        if (totalFotoSlides > 0) {
+            setInterval(nextFotoSlide, 3000);
+        }
+    }
+
+    function showFotoSlide(index) {
+        // Remove active class from all slides
+        fotoSlides.forEach(slide => slide.classList.remove('active'));
+        
+        // Add active class to current slide
+        if (fotoSlides[index] && fotoSlides[index].style.display !== 'none') {
+            fotoSlides[index].classList.add('active');
+        }
+    }
+
+    function nextFotoSlide() {
+        // Finde das nächste sichtbare Bild
+        let nextIndex = currentFotoSlide;
+        let attempts = 0;
+        
+        do {
+            nextIndex = (nextIndex + 1) % totalFotoSlides;
+            attempts++;
+            
+            // Verhindere Endlosschleife
+            if (attempts > totalFotoSlides) {
+                nextIndex = 0;
+                break;
+            }
+        } while (fotoSlides[nextIndex] && fotoSlides[nextIndex].style.display === 'none');
+        
+        currentFotoSlide = nextIndex;
+        showFotoSlide(currentFotoSlide);
+    }
+
+    // Initialize slideshow when DOM is loaded
+    initializeFotoshow();
+
     // Responsive handling
     window.addEventListener('resize', () => {
         currentPartnerSlide = 0;
@@ -392,5 +488,11 @@
         updateTeamSlider();
     });
 </script>
+<!-- Fixed Bottom Left Logo -->
+<div class="fixed-logo">
+    <span>Sommertheater</span>
+    <strong>TURM20</strong>
+</div>
+
 </body>
 </html>
