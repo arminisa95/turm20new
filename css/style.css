@@ -222,7 +222,7 @@ section h2,
 .ticket-button {
     position: fixed;
     bottom: 20px;
-    right: 20px;
+    left: 20px;
     z-index: 1000;
     font-family: 'Poppins', sans-serif;
     color: var(--white);
@@ -744,11 +744,11 @@ section p {
     text-decoration: underline;
 }
 
-/* Fixed Bottom Left Logo */
+/* Fixed Bottom Right Logo */
 .fixed-logo {
     position: fixed;
     bottom: 20px;
-    left: 20px;
+    right: 20px;
     z-index: 1000;
     font-family: 'Poppins', sans-serif;
     color: var(--white);
