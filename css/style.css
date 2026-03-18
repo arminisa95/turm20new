@@ -220,24 +220,41 @@ section h2,
 }
 
 .ticket-button {
-    display: inline-block;
-    text-decoration: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
     font-family: 'Poppins', sans-serif;
-    font-size: 3rem;
-    font-weight: 500;
+    color: var(--white);
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 300;
+    line-height: 1;
+    margin-bottom: 2px;
     text-transform: uppercase;
-    letter-spacing: 7px;
-    color: var(--accent-color);
-    transition: all 0.3s ease;
-    animation: fadeInUp 1s ease 1.4s backwards;
-    position: relative;
-    margin-left: auto;
-    margin-right: 2rem;
+    letter-spacing: 2px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
 }
 
 .ticket-button:hover {
-    color: var(--secondary-color);
-    transform: translateY(-2px);
+    opacity: 1;
+}
+
+.ticket-button:hover span {
+    color: var(--accent-color);
+}
+
+.ticket-button strong {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--accent-color);
 }
 
 /* Sections */
