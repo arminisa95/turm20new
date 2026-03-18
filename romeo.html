@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Romeo & Julia - Sommertheater Turm 20</title>
+    <meta name="description" content="Romeo & Julia – Shakespeare's zeitlose Liebesgeschichte im Sommertheater Turm 20 in Linz.">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Serif+Display:ital,wght@0,300;0,400;1,300&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body id="top">
+    <!-- Navigation -->
+    <div class="top-bar" id="top-bar-menu">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="img/logo/admin-ajax.png" alt="Turm 20 Logo" class="logo-image">
+            </a>
+            <button class="mobile-menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="menu" id="main-nav">
+                <li><a href="index.html#program">Programm</a></li>
+                <li><a href="index.html#location">Info</a></li>
+                <li><a href="index.html#termine">Tickets & Termine</a></li>
+                <li><a href="index.html#team">Turm20</a></li>
+                <li><a href="index.html#kontakt">Spenden</a></li>
+                <li><a href="index.html#partner">Partner</a></li>
+                <li><a href="index.html#contact">Kontakt</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Romeo & Julia Section -->
+    <section id="romeo" style="padding-top: 8rem;">
+        <div class="team-header">
+            <h2>Romeo & Julia</h2>
+            <p class="time">Shakespeare's zeitlose Liebesgeschichte</p>
+        </div>
+
+        <div class="team-content">
+            <p>Erleben Sie William Shakespeares berühmteste Liebesgeschichte in einer einzigartigen Open-Air-Inszenierung am Turm 20. Zwei verfeindete Familien, zwei junge Liebende und ein Schicksal, das die Welt seit Jahrhunderten bewegt.</p>
+
+            <h3 style="color: var(--accent-color); margin-top: 3rem; margin-bottom: 1rem;">Über das Stück</h3>
+            <p>In der Stadt Verona herrscht eine erbitterte Fehde zwischen den Familien Montague und Capulet. Als Romeo Montague und Julia Capulet sich auf einem Fest begegnen, verlieben sie sich auf den ersten Blick – ohne zu wissen, dass sie den verfeindeten Familien angehören. Eine Geschichte über Liebe, Hass und die Kraft der Versöhnung.</p>
+
+            <h3 style="color: var(--accent-color); margin-top: 3rem; margin-bottom: 1rem;">Details</h3>
+            <p>
+                <strong>Regie:</strong> wird noch bekanntgegeben<br>
+                <strong>Dauer:</strong> ca. 2 Stunden<br>
+                <strong>Spielort:</strong> Turm 20, Kreuzweg 42, 4040 Linz<br>
+                <strong>Einlass:</strong> 18:30 Uhr<br>
+                <strong>Beginn:</strong> 19:30 Uhr
+            </p>
+
+            <div class="team-links" style="margin-top: 3rem;">
+                <a href="index.html#termine" class="team-link">Tickets sichern</a>
+                <a href="index.html#program" class="team-link" style="background: transparent; border: 2px solid var(--accent-color); color: var(--accent-color); margin-left: 1rem;">Zurück zum Programm</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-partners">
+            <img src="img/partner/fitzinger.png" alt="Fitzinger" class="footer-partner-img">
+            <img src="img/partner/lehner-1.png" alt="Lehner" class="footer-partner-img">
+            <img src="img/partner/mayer.png" alt="Mayer" class="footer-partner-img">
+            <img src="img/partner/rosso.png" alt="Rosso" class="footer-partner-img">
+            <img src="img/partner/sinzinger.png" alt="Sinzinger" class="footer-partner-img">
+            <img src="img/partner/seca.png" alt="SECA" class="footer-partner-img">
+            <img src="img/partner/ars.png" alt="ARS" class="footer-partner-img">
+            <img src="img/partner/linzag_website-1.png" alt="LINZAG" class="footer-partner-img">
+            <img src="img/partner/Linz_CD_Logo__Linz_Kultur_Schutzzone-scaled-e1719396165985.jpg" alt="Linz Kultur Schutzzone" class="footer-partner-img">
+            <img src="img/partner/land_website-1.png" alt="Land OÖ" class="footer-partner-img">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="impressum.html">Impressum</a></li>
+                <li><a href="datenschutz.html">Datenschutz</a></li>
+            </ul>
+        </nav>
+        <p>&copy; 2026 Sommertheater am Turm 20.</p>
+    </footer>
+
+    <script>
+    function toggleMenu() {
+        const menu = document.getElementById('main-nav');
+        menu.classList.toggle('active');
+    }
+
+    document.addEventListener('click', function(event) {
+        const menu = document.getElementById('main-nav');
+        const menuToggle = document.querySelector('.mobile-menu-toggle');
+        if (!menu.contains(event.target) && !menuToggle.contains(event.target)) {
+            menu.classList.remove('active');
+        }
+    });
+    </script>
+
+<!-- Fixed Bottom Left Logo -->
+<div class="fixed-logo">
+    <span>powered by Linz AG</span>
+</div>
+
+</body>
+</html>
