@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Turm20 - Theater & Kulturverein Linz</title>
+    <meta name="description" content="Turm 20 – Theater- und Kulturverein am Fuße des Pöstlingbergs in Linz. Erfahren Sie mehr über uns, unsere Geschichte und unser Team.">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Serif+Display:ital,wght@0,300;0,400;1,300&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body id="top">
+    <!-- Navigation -->
+    <div class="top-bar" id="top-bar-menu">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="img/logo/admin-ajax.png" alt="Turm 20 Logo" class="logo-image">
+            </a>
+            <button class="mobile-menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="menu" id="main-nav">
+                <li><a href="index.html#program">Programm</a></li>
+                <li><a href="index.html#location">Info</a></li>
+                <li><a href="index.html#termine">Tickets & Termine</a></li>
+                <li><a href="index.html#team" class="active">Turm20</a></li>
+                <li><a href="index.html#kontakt">Spenden</a></li>
+                <li><a href="index.html#partner">Partner</a></li>
+                <li><a href="index.html#contact">Kontakt</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Turm20 Section -->
+    <section id="turm20" style="padding-top: 8rem;">
+        <div class="team-header">
+            <h2>Turm20</h2>
+            <p class="time">Theater & Kulturverein</p>
+        </div>
+
+        <div class="team-content">
+            <p>Der Turm 20 ist ein einzigartiger Theater- und Kulturverein in Linz, der am Fuße des Pöstlingbergs beheimatet ist. Seit seiner Gründung bietet der Verein ein vielfältiges Programm an Theateraufführungen, Konzerten und kulturellen Veranstaltungen in einer historischen und charmanten Atmosphäre.</p>
+
+            <p>Unser Ziel ist es, Theater und Kultur für alle zugänglich zu machen und dabei die besondere Atmosphäre des Turm 20 zu nutzen. Umgeben von der malerischen Natur am Pöstlingberg schaffen wir unvergessliche Erlebnisse für unser Publikum.</p>
+
+            <h3 style="color: var(--accent-color); margin-top: 3rem; margin-bottom: 1rem;">Unsere Geschichte</h3>
+            <p>Was als kleine Initiative begann, hat sich zu einem festen Bestandteil der Linzer Kulturlandschaft entwickelt. Der Turm 20, ein historisches Gebäude am Fuße des Pöstlingbergs, bietet die perfekte Kulisse für Sommertheater unter freiem Himmel.</p>
+
+            <h3 style="color: var(--accent-color); margin-top: 3rem; margin-bottom: 1rem;">Unser Team</h3>
+            <p>Unser engagiertes Team aus Schauspielern, Regisseuren, Technikern und ehrenamtlichen Helfern arbeitet mit Leidenschaft daran, jede Saison zu einem besonderen Erlebnis zu machen.</p>
+
+            <div class="team-links" style="margin-top: 3rem;">
+                <a href="index.html" class="team-link">Zurück zur Startseite</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-partners">
+            <img src="img/partner/fitzinger.png" alt="Fitzinger" class="footer-partner-img">
+            <img src="img/partner/lehner-1.png" alt="Lehner" class="footer-partner-img">
+            <img src="img/partner/mayer.png" alt="Mayer" class="footer-partner-img">
+            <img src="img/partner/rosso.png" alt="Rosso" class="footer-partner-img">
+            <img src="img/partner/sinzinger.png" alt="Sinzinger" class="footer-partner-img">
+            <img src="img/partner/seca.png" alt="SECA" class="footer-partner-img">
+            <img src="img/partner/ars.png" alt="ARS" class="footer-partner-img">
+            <img src="img/partner/linzag_website-1.png" alt="LINZAG" class="footer-partner-img">
+            <img src="img/partner/Linz_CD_Logo__Linz_Kultur_Schutzzone-scaled-e1719396165985.jpg" alt="Linz Kultur Schutzzone" class="footer-partner-img">
+            <img src="img/partner/land_website-1.png" alt="Land OÖ" class="footer-partner-img">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="impressum.html">Impressum</a></li>
+                <li><a href="datenschutz.html">Datenschutz</a></li>
+            </ul>
+        </nav>
+        <p>&copy; 2026 Sommertheater am Turm 20.</p>
+    </footer>
+
+    <script>
+    function toggleMenu() {
+        const menu = document.getElementById('main-nav');
+        menu.classList.toggle('active');
+    }
+
+    document.addEventListener('click', function(event) {
+        const menu = document.getElementById('main-nav');
+        const menuToggle = document.querySelector('.mobile-menu-toggle');
+        if (!menu.contains(event.target) && !menuToggle.contains(event.target)) {
+            menu.classList.remove('active');
+        }
+    });
+    </script>
+
+<!-- Fixed Bottom Left Logo -->
+<div class="fixed-logo">
+    <span>powered by Linz AG</span>
+</div>
+
+</body>
+</html>
