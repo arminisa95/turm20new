@@ -231,6 +231,8 @@ section h2,
     transition: all 0.3s ease;
     animation: fadeInUp 1s ease 1.4s backwards;
     position: relative;
+    margin-left: auto;
+    margin-right: 2rem;
 }
 
 .ticket-button:hover {
