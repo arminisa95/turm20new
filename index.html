@@ -37,6 +37,55 @@
             <a href="#termine" class="ticket-button">TICKETS</a>
         </div>
     </div>
+        <!-- Team Section -->
+    <section id="team">
+        <div class="team-header">
+            <h2>Programm Turm20</h2>
+        </div>
+        
+        <div class="team-slider-container">
+            <div class="team-slider">
+                <div class="team-member">
+                    <img src="DSC_0124_1David-scaled.jpg" alt="David Jentgens">
+                    <p><span class="team-name">David Jentgens</span></p>
+                </div>
+                <div class="team-member">
+                    <img src="DSC_0160Michi-scaled.jpg" alt="Michaela Obermayer">
+                    <p><span class="team-name">Michaela Obermayer</span></p>
+                </div>
+                <div class="team-member">
+                    <img src="crew21-.jpg" alt="Mariette Witteveen">
+                    <p><span class="team-name">Mariette Witteveen</span></p>
+                </div>
+                <div class="team-member">
+                    <img src="DSC_0098_1PhilAnca-scaled.jpg" alt="Philipp Gartlehner">
+                    <p><span class="team-name">Philipp Gartlehner</span></p>
+                </div>
+                <div class="team-member">
+                    <img src="DSC_8667-contrato-phil-tobi-scaled.jpg" alt="Philipp & Tobias">
+                    <p><span class="team-name">Philipp & Tobias</span></p>
+                </div>
+                <div class="team-member">
+                    <img src="crew23-wolfgang.jpg" alt="Wolfgang Königsmaier">
+                    <p><span class="team-name">Wolfgang Königsmaier</span></p>
+                </div>
+                <div class="team-member">
+                    <img src="DSC_8691-aris-martin-scaled.jpg" alt="Florian Arbeithuber">
+                    <p><span class="team-name">Florian Arbeithuber</span></p>
+                </div>
+                <div class="team-member">
+                    <img src="DSC_0141_1Martin-scaled.jpg" alt="Martin Schreiber">
+                    <p><span class="team-name">Martin Schreiber</span></p>
+                </div>
+                <div class="team-member">
+                    <img src="Bas.jpg" alt="Sebastian Bas">
+                    <p><span class="team-name">Sebastian Bas</span></p>
+                </div>
+            </div>
+            <div class="click-area click-area-left" onclick="slideTeam(-1)"></div>
+            <div class="click-area click-area-right" onclick="slideTeam(1)"></div>
+        </div>
+    </section>
 
     <!-- Termine Section -->
     <section id="termine" class="termine-section">
@@ -126,6 +175,35 @@
                 </div>
             </div>
         </section>
+    </section>
+
+    <!-- Location Section -->
+    <section id="location">
+        <h2>Location</h2>
+        <p>Der Turm 20 am Fuße des Pöstlingbergs</p>
+        <div class="location-content">
+            <div class="location-info">
+                <h3>Anfahrt</h3>
+                <p>Der Turm 20 befindet sich in malerischer Lage am Fuße des Pöstlingbergs in Linz.</p>
+                <p><strong>Adresse:</strong><br>
+                Kreuzweg 42<br>
+                4040 Linz</p>
+                <p><strong>Öffentliche Verkehrsmittel:</strong><br>
+                Mit der Pöstlingbergbahn oder Bus erreichbar</p>
+            </div>
+            <div class="location-map">
+                <!-- Google Maps Embed -->
+                <iframe 
+                    src="https://maps.google.com/maps?ll=48.32225303120821,14.268526151984537&z=17&t=m&output=embed"
+                    width="100%" 
+                    height="400" 
+                    style="border:0; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);"
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
     </section>
 
     <!-- Foto Show Section -->
@@ -247,60 +325,7 @@
         </div>
     </section>
 
-    <!-- Was war Section -->
-    <section id="waswar">
-        <h2>Was war?</h2>
-        <p>Rückblick auf vergangene Aufführungen</p>
-        <div class="program-grid">
-            <div class="program-card">
-                <div class="program-card-content">
-                    <h3>2024 - Viel Lärm um Nichts</h3>
-                    <p>Shakespeare-Komödie im Sommer 2024</p>
-                </div>
-            </div>
-            <div class="program-card">
-                <div class="program-card-content">
-                    <h3>2023 - Die Möwe</h3>
-                    <p>Anton Tschechows Klassiker</p>
-                </div>
-            </div>
-            <div class="program-card">
-                <div class="program-card-content">
-                    <h3>2022 - Ein Sommernachtstraum</h3>
-                    <p>Magische Sommernächte mit Shakespeare</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Location Section -->
-    <section id="location">
-        <h2>Location</h2>
-        <p>Der Turm 20 am Fuße des Pöstlingbergs</p>
-        <div class="location-content">
-            <div class="location-info">
-                <h3>Anfahrt</h3>
-                <p>Der Turm 20 befindet sich in malerischer Lage am Fuße des Pöstlingbergs in Linz.</p>
-                <p><strong>Adresse:</strong><br>
-                Kreuzweg 42<br>
-                4040 Linz</p>
-                <p><strong>Öffentliche Verkehrsmittel:</strong><br>
-                Mit der Pöstlingbergbahn oder Bus erreichbar</p>
-            </div>
-            <div class="location-map">
-                <!-- Google Maps Embed -->
-                <iframe 
-                    src="https://maps.google.com/maps?ll=48.32225303120821,14.268526151984537&z=17&t=m&output=embed"
-                    width="100%" 
-                    height="400" 
-                    style="border:0; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);"
-                    allowfullscreen="" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
-            </div>
-        </div>
-    </section>
+  
 
     <!-- Kontakt Section -->
     <section id="kontakt">
