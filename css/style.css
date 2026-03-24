@@ -1152,11 +1152,11 @@ font-weight: 300;
     }
 
     .hero-content h1 {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 
     .hero-content p {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 
     .location-content {
@@ -1164,6 +1164,271 @@ font-weight: 300;
     }
 
     section h2 {
-        font-size: 2rem;
+        font-size: 1.8rem;
+    }
+}
+
+/* ========================================
+   COMPREHENSIVE RESPONSIVE IMPROVEMENTS
+   ======================================== */
+
+/* Large Desktops (1200px+) */
+@media (min-width: 1200px) {
+    .nav-container {
+        padding-left: 220px;
+    }
+    
+    .program-cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Tablets and Small Desktops (768px - 1199px) */
+@media (max-width: 1199px) {
+    .nav-container {
+        padding-left: 180px;
+        padding-right: 1rem;
+    }
+    
+    .nav-title {
+        left: 80px;
+        font-size: 1.5rem;
+    }
+    
+    .logo-image {
+        height: 140px;
+    }
+    
+    .hero {
+        height: 70vh;
+    }
+    
+    .program-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .footer-partners {
+        gap: 1rem;
+    }
+    
+    .footer-partner-img {
+        height: 50px;
+    }
+}
+
+/* Mobile Devices (max-width: 767px) */
+@media (max-width: 767px) {
+    /* Navigation */
+    .nav-container {
+        padding: 0.75rem 1rem;
+        padding-left: 100px;
+        justify-content: space-between;
+    }
+    
+    .nav-title {
+        position: static;
+        font-size: 1.1rem;
+        left: auto;
+        margin-left: 10px;
+    }
+    
+    .logo {
+        left: 0.25rem;
+        top: 5px;
+    }
+    
+    .logo-image {
+        height: 80px;
+    }
+    
+    .menu {
+        gap: 0.5rem;
+    }
+    
+    .menu a {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.6rem;
+    }
+    
+    /* Hero Section */
+    .hero {
+        height: 60vh;
+        margin-top: 60px;
+    }
+    
+    .hero-content {
+        padding: 1rem;
+    }
+    
+    .hero-content h1 {
+        font-size: 1.6rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+    }
+    
+    /* Program Section */
+    .program-cards {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+    
+    .program-card {
+        min-height: 200px;
+    }
+    
+    .program-card-content h3 {
+        font-size: 1.5rem;
+    }
+    
+    .program-card-content p {
+        font-size: 1rem;
+    }
+    
+    /* Partner Section */
+    .partner-slider {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .partner-member {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+    
+    .slider-btn {
+        display: none;
+    }
+    
+    /* Footer */
+    .footer-partners {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.75rem;
+        padding: 1rem;
+    }
+    
+    .footer-partner-img {
+        height: 40px;
+        max-width: 100px;
+    }
+    
+    footer nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    /* Fixed Logo */
+    .fixed-logo {
+        font-size: 0.65rem;
+        padding: 0.4rem 0.6rem;
+    }
+    
+    /* Termine Section */
+    .termine-header h2 {
+        font-size: 1.6rem;
+    }
+    
+    .terminslider {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .termin {
+        min-width: auto;
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    /* Team Section */
+    .textwrap h2 {
+        font-size: 1.6rem;
+    }
+    
+    .teamslider {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .teamwrap {
+        flex: 0 0 auto;
+        width: 100%;
+        max-width: 320px;
+    }
+}
+
+/* Small Mobile Devices (max-width: 480px) */
+@media (max-width: 480px) {
+    .nav-container {
+        padding-left: 80px;
+    }
+    
+    .nav-title {
+        font-size: 0.9rem;
+        display: none;
+    }
+    
+    .logo-image {
+        height: 60px;
+    }
+    
+    .menu a {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.5rem;
+    }
+    
+    .hero {
+        height: 50vh;
+        margin-top: 50px;
+    }
+    
+    .hero-content h1 {
+        font-size: 1.3rem;
+    }
+    
+    .hero-content p {
+        font-size: 0.9rem;
+    }
+    
+    section {
+        padding: 2rem 1rem;
+    }
+    
+    section h2 {
+        font-size: 1.4rem;
+    }
+    
+    .program-card-content h3 {
+        font-size: 1.2rem;
+    }
+    
+    .footer-partner-img {
+        height: 30px;
+    }
+}
+
+/* Landscape Mode on Mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        height: 80vh;
+    }
+    
+    .nav-container {
+        padding: 0.5rem 1rem;
+        padding-left: 100px;
+    }
+    
+    .logo-image {
+        height: 70px;
+    }
+}
+
+/* High DPI / Retina Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .logo-image {
+        image-rendering: -webkit-optimize-contrast;
     }
 }
