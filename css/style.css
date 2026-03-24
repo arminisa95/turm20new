@@ -576,6 +576,114 @@ section p {
     padding-top: 8rem;
 }
 
+/* Video Hero */
+.video-hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.video-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(44, 32, 19, 0.55);
+    z-index: 1;
+}
+
+.video-hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 2rem;
+}
+
+.video-hero-content h1 {
+    font-family: 'Noto Serif Display', serif;
+    font-size: clamp(3.5rem, 9vw, 8rem);
+    font-weight: 300;
+    color: var(--accent-color);
+    letter-spacing: 6px;
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
+.video-hero-content p {
+    font-size: 1rem;
+    color: var(--secondary-color);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+}
+
+.video-hero-scroll {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    color: var(--accent-color);
+    opacity: 0.6;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    animation: bounce 2s infinite;
+}
+
+.video-hero-scroll::after {
+    content: '↓';
+    display: block;
+    font-size: 1.4rem;
+    margin-top: 0.3rem;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+}
+
+/* Video Grid */
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.video-item video {
+    width: 100%;
+    border-radius: 10px;
+    background: #000;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+}
+
+.video-item p {
+    text-align: center;
+    margin-top: 0.75rem;
+    color: var(--secondary-color);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
 .section-subheading {
     color: var(--accent-color);
     margin-top: 3rem;
