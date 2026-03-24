@@ -369,6 +369,13 @@ section p {
     align-items: center;
 }
 
+.partner-member a {
+    display: inline-block;
+    line-height: 0;
+    border: none;
+    outline: none;
+}
+
 .partner-member img {
     width: 300px;
     height: 300px;
