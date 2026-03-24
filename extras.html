@@ -31,7 +31,7 @@
     </div>
 
     <!-- Extras Section -->
-    <section id="extras" style="padding-top: 8rem;">
+    <section id="extras" class="subpage-section">
         <div class="team-header">
             <h2>Extras</h2>
             <p class="time">Konzerte, Lesungen & mehr</p>
@@ -40,18 +40,18 @@
         <div class="team-content">
             <p>Neben unserem Theaterprogramm bieten wir am Turm 20 ein abwechslungsreiches Rahmenprogramm. Von Konzerten über Lesungen bis hin zu besonderen Veranstaltungen – hier ist für jeden etwas dabei.</p>
 
-            <h3 style="color: var(--accent-color); margin-top: 3rem; margin-bottom: 1rem;">Konzerte</h3>
+            <h3 class="section-subheading">Konzerte</h3>
             <p>Genießen Sie musikalische Highlights unter freiem Himmel in der einzigartigen Atmosphäre des Turm 20. Von Jazz über Klassik bis hin zu regionalen Musikgruppen – unsere Sommerkonzerte bieten ein vielfältiges Programm.</p>
 
-            <h3 style="color: var(--accent-color); margin-top: 3rem; margin-bottom: 1rem;">Lesungen</h3>
+            <h3 class="section-subheading">Lesungen</h3>
             <p>Literatur am Pöstlingberg: Lassen Sie sich von spannenden Lesungen und Autorenabenden in die Welt der Geschichten entführen.</p>
 
-            <h3 style="color: var(--accent-color); margin-top: 3rem; margin-bottom: 1rem;">Sonderveranstaltungen</h3>
+            <h3 class="section-subheading">Sonderveranstaltungen</h3>
             <p>Halten Sie Ausschau nach unseren besonderen Events – von Premierenfeiern über Kulturbrunchs bis hin zu exklusiven Abenden am Turm 20.</p>
 
-            <div class="team-links" style="margin-top: 3rem;">
+            <div class="team-links mt-3">
                 <a href="index.html#termine" class="team-link">Tickets sichern</a>
-                <a href="index.html#program" class="team-link" style="background: transparent; border: 2px solid var(--accent-color); color: var(--accent-color); margin-left: 1rem;">Zurück zum Programm</a>
+                <a href="index.html#program" class="team-link btn-outline">Zurück zum Programm</a>
             </div>
         </div>
     </section>
@@ -79,20 +79,7 @@
         <p>&copy; 2026 Sommertheater am Turm 20.</p>
     </footer>
 
-    <script>
-    function toggleMenu() {
-        const menu = document.getElementById('main-nav');
-        menu.classList.toggle('active');
-    }
-
-    document.addEventListener('click', function(event) {
-        const menu = document.getElementById('main-nav');
-        const menuToggle = document.querySelector('.mobile-menu-toggle');
-        if (!menu.contains(event.target) && !menuToggle.contains(event.target)) {
-            menu.classList.remove('active');
-        }
-    });
-    </script>
+    <script src="js/script.js"></script>
 
 <!-- Fixed Bottom Left Ticket Button -->
 <a href="index.html#termine" class="ticket-button">

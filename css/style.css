@@ -548,6 +548,45 @@ section p {
     margin-top: 2rem;
 }
 
+.team-links.mt-3 {
+    margin-top: 3rem;
+}
+
+/* Subpage utilities */
+.subpage-section {
+    padding-top: 8rem;
+}
+
+.section-subheading {
+    color: var(--accent-color);
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+}
+
+.btn-outline {
+    background: transparent !important;
+    border: 2px solid var(--accent-color) !important;
+    color: var(--accent-color) !important;
+    margin-left: 1rem;
+}
+
+.note-text {
+    margin-top: 2rem;
+    font-style: italic;
+    color: var(--secondary-color);
+}
+
+.accent-link {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.accent-link:hover {
+    color: var(--white);
+    text-decoration: underline;
+}
+
 .team-link {
     display: inline-block;
     padding: 1rem 2rem;

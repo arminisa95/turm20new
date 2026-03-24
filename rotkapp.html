@@ -31,7 +31,7 @@
     </div>
 
     <!-- Rotkäppchen Section -->
-    <section id="rotkappchen" style="padding-top: 8rem;">
+    <section id="rotkappchen" class="subpage-section">
         <div class="team-header">
             <h2>Rotkäppchen</h2>
             <p class="time">Das beliebte Märchen für die ganze Familie</p>
@@ -40,10 +40,10 @@
         <div class="team-content">
             <p>Das wohl bekannteste Märchen der Brüder Grimm kommt auf die Bühne des Turm 20! Rotkäppchen nimmt Klein und Groß mit auf eine abenteuerliche Reise durch den Wald – voller Spannung, Humor und einer wichtigen Botschaft.</p>
 
-            <h3 style="color: var(--accent-color); margin-top: 3rem; margin-bottom: 1rem;">Über das Stück</h3>
+            <h3 class="section-subheading">Über das Stück</h3>
             <p>Ein kleines Mädchen mit rotem Käppchen macht sich auf den Weg zur Großmutter. Doch im Wald lauert der listige Wolf. Eine liebevoll inszenierte Familienproduktion, die das klassische Märchen in neuem Licht erstrahlen lässt – perfekt für einen unvergesslichen Nachmittag am Turm 20.</p>
 
-            <h3 style="color: var(--accent-color); margin-top: 3rem; margin-bottom: 1rem;">Details</h3>
+            <h3 class="section-subheading">Details</h3>
             <p>
                 <strong>Regie:</strong> wird noch bekanntgegeben<br>
                 <strong>Dauer:</strong> ca. 1 Stunde<br>
@@ -51,9 +51,9 @@
                 <strong>Spielort:</strong> Turm 20, Kreuzweg 42, 4040 Linz
             </p>
 
-            <div class="team-links" style="margin-top: 3rem;">
+            <div class="team-links mt-3">
                 <a href="index.html#termine" class="team-link">Tickets sichern</a>
-                <a href="index.html#program" class="team-link" style="background: transparent; border: 2px solid var(--accent-color); color: var(--accent-color); margin-left: 1rem;">Zurück zum Programm</a>
+                <a href="index.html#program" class="team-link btn-outline">Zurück zum Programm</a>
             </div>
         </div>
     </section>
@@ -81,20 +81,7 @@
         <p>&copy; 2026 Sommertheater am Turm 20.</p>
     </footer>
 
-    <script>
-    function toggleMenu() {
-        const menu = document.getElementById('main-nav');
-        menu.classList.toggle('active');
-    }
-
-    document.addEventListener('click', function(event) {
-        const menu = document.getElementById('main-nav');
-        const menuToggle = document.querySelector('.mobile-menu-toggle');
-        if (!menu.contains(event.target) && !menuToggle.contains(event.target)) {
-            menu.classList.remove('active');
-        }
-    });
-    </script>
+    <script src="js/script.js"></script>
 
 <!-- Fixed Bottom Left Ticket Button -->
 <a href="index.html#termine" class="ticket-button">

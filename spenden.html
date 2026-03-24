@@ -31,7 +31,7 @@
     </div>
 
     <!-- Spenden Section -->
-    <section id="spenden" style="padding-top: 8rem;">
+    <section id="spenden" class="subpage-section">
         <div class="team-header">
             <h2>Spenden</h2>
             <p class="time">Unterstützen Sie unsere Kulturarbeit</p>
@@ -40,24 +40,24 @@
         <div class="team-content">
             <p>Als gemeinnütziger Verein sind wir auf die Unterstützung unserer Freunde und Gönner angewiesen. Mit Ihrer Spende helfen Sie uns, qualitativ hochwertige Kulturveranstaltungen für die Öffentlichkeit zu ermöglichen und den kulturellen Reichtum unserer Region zu fördern.</p>
 
-            <h3 style="color: var(--accent-color); margin-top: 3rem; margin-bottom: 1rem;">Warum spenden?</h3>
+            <h3 class="section-subheading">Warum spenden?</h3>
             <p>Ihre Spende ermöglicht es uns, Theateraufführungen und Kulturveranstaltungen zu organisieren, die für alle zugänglich sind. Jeder Beitrag hilft, die Kunst und Kultur in Linz lebendig zu halten.</p>
 
-            <h3 style="color: var(--accent-color); margin-top: 3rem; margin-bottom: 1rem;">Bankverbindung</h3>
+            <h3 class="section-subheading">Bankverbindung</h3>
             <p>
                 <strong>Turm 20 – Theater- und Kulturverein</strong><br>
                 <strong>IBAN:</strong> AT092032032100632459<br>
                 <strong>Verwendungszweck:</strong> Spende Sommertheater
             </p>
 
-            <h3 style="color: var(--accent-color); margin-top: 3rem; margin-bottom: 1rem;">Kontakt</h3>
+            <h3 class="section-subheading">Kontakt</h3>
             <p>Bei Fragen zu Spenden kontaktieren Sie uns gerne unter:<br>
-                <strong>E-Mail:</strong> <a href="mailto:office@sommertheaterlinz.at" style="color: var(--accent-color);">office@sommertheaterlinz.at</a>
+                <strong>E-Mail:</strong> <a href="mailto:office@sommertheaterlinz.at" class="accent-link">office@sommertheaterlinz.at</a>
             </p>
 
-            <p style="margin-top: 2rem; font-style: italic; color: var(--secondary-color);">Vielen Dank für Ihre Unterstützung! Jede Spende macht einen Unterschied.</p>
+            <p class="note-text">Vielen Dank für Ihre Unterstützung! Jede Spende macht einen Unterschied.</p>
 
-            <div class="team-links" style="margin-top: 3rem;">
+            <div class="team-links mt-3">
                 <a href="index.html" class="team-link">Zurück zur Startseite</a>
             </div>
         </div>
@@ -86,20 +86,7 @@
         <p>&copy; 2026 Sommertheater am Turm 20.</p>
     </footer>
 
-    <script>
-    function toggleMenu() {
-        const menu = document.getElementById('main-nav');
-        menu.classList.toggle('active');
-    }
-
-    document.addEventListener('click', function(event) {
-        const menu = document.getElementById('main-nav');
-        const menuToggle = document.querySelector('.mobile-menu-toggle');
-        if (!menu.contains(event.target) && !menuToggle.contains(event.target)) {
-            menu.classList.remove('active');
-        }
-    });
-    </script>
+    <script src="js/script.js"></script>
 
 <!-- Fixed Bottom Left Ticket Button -->
 <a href="index.html#termine" class="ticket-button">

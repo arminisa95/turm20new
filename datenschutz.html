@@ -3,31 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Datenschutz - Sommertheater am Turm 20</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Serif+Display:ital,wght@0,300;0,400;1,300&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
-<body>
+<body id="top">
     <!-- Navigation -->
-    <header>
-        <nav>
-            <div class="nav-container">
-                <a href="index.html" class="logo">
-                    <img src="img/logo/admin-ajax.png" alt="Turm 20 Logo" class="logo-image">
-                </a>
-                <h1 class="nav-title">Sommertheater Turm 20</h1>
-                <button class="mobile-menu-toggle" onclick="toggleMenu()">☰</button>
-                <ul class="menu" id="main-nav">
-                    <li><a href="index.html#termine">Tickets & Termine</a></li>
-                    <li><a href="index.html#location">Location</a></li>
-                    <li><a href="index.html#partner">Partner</a></li>
-                    <li><a href="index.html#team">Team</a></li>
-                    <li><a href="index.html#waswar">Was war?</a></li>
-                    <li><a href="index.html#kontakt">Kontakt</a></li>
-                    <li><a href="datenschutz.html" class="active">Datenschutz</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+    <div class="top-bar" id="top-bar-menu">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="img/logo/admin-ajax.png" alt="Turm 20 Logo" class="logo-image">
+            </a>
+            <button class="mobile-menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="menu" id="main-nav">
+                <li><a href="index.html#program">Programm</a></li>
+                <li><a href="index.html#location">Info</a></li>
+                <li><a href="index.html#termine">Tickets & Termine</a></li>
+                <li><a href="index.html#team">Turm20</a></li>
+                <li><a href="index.html#kontakt">Spenden</a></li>
+                <li><a href="index.html#partner">Partner</a></li>
+                <li><a href="index.html#contact">Kontakt</a></li>
+            </ul>
+        </div>
+    </div>
 
     <!-- Datenschutz Section -->
     <section id="datenschutz">
@@ -142,12 +142,6 @@
     </footer>
 
     <script src="js/script.js"></script>
-    <script>
-        function toggleMenu() {
-            const menu = document.getElementById('main-nav');
-            menu.classList.toggle('active');
-        }
-    </script>
 <!-- Fixed Bottom Left Ticket Button -->
 <a href="index.html#termine" class="ticket-button">
     <span>TICKETS</span>

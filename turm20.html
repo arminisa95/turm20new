@@ -31,7 +31,7 @@
     </div>
 
     <!-- Turm20 Section -->
-    <section id="turm20" style="padding-top: 8rem;">
+    <section id="turm20" class="subpage-section">
         <div class="team-header">
             <h2>Turm20</h2>
             <p class="time">Theater & Kulturverein</p>
@@ -42,13 +42,13 @@
 
             <p>Unser Ziel ist es, Theater und Kultur für alle zugänglich zu machen und dabei die besondere Atmosphäre des Turm 20 zu nutzen. Umgeben von der malerischen Natur am Pöstlingberg schaffen wir unvergessliche Erlebnisse für unser Publikum.</p>
 
-            <h3 style="color: var(--accent-color); margin-top: 3rem; margin-bottom: 1rem;">Unsere Geschichte</h3>
+            <h3 class="section-subheading">Unsere Geschichte</h3>
             <p>Was als kleine Initiative begann, hat sich zu einem festen Bestandteil der Linzer Kulturlandschaft entwickelt. Der Turm 20, ein historisches Gebäude am Fuße des Pöstlingbergs, bietet die perfekte Kulisse für Sommertheater unter freiem Himmel.</p>
 
-            <h3 style="color: var(--accent-color); margin-top: 3rem; margin-bottom: 1rem;">Unser Team</h3>
+            <h3 class="section-subheading">Unser Team</h3>
             <p>Unser engagiertes Team aus Schauspielern, Regisseuren, Technikern und ehrenamtlichen Helfern arbeitet mit Leidenschaft daran, jede Saison zu einem besonderen Erlebnis zu machen.</p>
 
-            <div class="team-links" style="margin-top: 3rem;">
+            <div class="team-links mt-3">
                 <a href="index.html" class="team-link">Zurück zur Startseite</a>
             </div>
         </div>
@@ -77,20 +77,7 @@
         <p>&copy; 2026 Sommertheater am Turm 20.</p>
     </footer>
 
-    <script>
-    function toggleMenu() {
-        const menu = document.getElementById('main-nav');
-        menu.classList.toggle('active');
-    }
-
-    document.addEventListener('click', function(event) {
-        const menu = document.getElementById('main-nav');
-        const menuToggle = document.querySelector('.mobile-menu-toggle');
-        if (!menu.contains(event.target) && !menuToggle.contains(event.target)) {
-            menu.classList.remove('active');
-        }
-    });
-    </script>
+    <script src="js/script.js"></script>
 
 <!-- Fixed Bottom Left Ticket Button -->
 <a href="index.html#termine" class="ticket-button">

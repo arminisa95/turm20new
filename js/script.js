@@ -25,18 +25,15 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Navbar scroll effect
 window.addEventListener('scroll', () => {
     const topBar = document.getElementById('top-bar-menu');
-    if (window.scrollY > 50) {
-        topBar.classList.add('scrolled');
-    } else {
-        topBar.classList.remove('scrolled');
-    }
+    if (!topBar) return;
+    topBar.classList.toggle('scrolled', window.scrollY > 50);
 });
 
 // Close mobile menu when clicking outside
 document.addEventListener('click', (e) => {
     const menu = document.getElementById('main-nav');
     const toggle = document.querySelector('.mobile-menu-toggle');
-    if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+    if (menu && toggle && !menu.contains(e.target) && !toggle.contains(e.target)) {
         menu.classList.remove('active');
     }
 });
