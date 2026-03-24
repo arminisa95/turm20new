@@ -846,7 +846,8 @@ section p {
     color: var(--white);
     opacity: 0.8;
     transition: opacity 0.3s ease;
-    pointer-events: none;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .fixed-logo:hover {
