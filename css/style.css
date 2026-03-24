@@ -373,11 +373,11 @@ section p {
     border-radius: 10px;
     margin-bottom: 1rem;
     transition: all 0.3s ease;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(107, 129, 109, 0.18);
     padding: 1.5rem;
     box-sizing: border-box;
-    border: 2px solid rgba(107, 129, 109, 0.3);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(107, 129, 109, 0.4);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .partner-member:hover img {
