@@ -367,8 +367,8 @@ section p {
 }
 
 .partner-member img {
-    width: 220px;
-    height: 140px;
+    width: 340px;
+    height: 200px;
     object-fit: contain;
     object-position: center;
     border-radius: 10px;
