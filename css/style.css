@@ -405,24 +405,37 @@ section p {
     margin-bottom: 0.5rem;
 }
 
-.partner-click-area {
+.slider-btn {
     position: absolute;
-    top: 0;
-    height: 100%;
-    width: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(107, 129, 109, 0.25);
+    border: 2px solid rgba(107, 129, 109, 0.5);
+    color: var(--accent-color);
+    font-size: 2rem;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
     cursor: pointer;
     z-index: 10;
-    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    line-height: 1;
 }
 
-.partner-click-area-left {
-    left: -50vw;
-    width: calc(50% + 50vw);
+.slider-btn:hover {
+    background: rgba(107, 129, 109, 0.55);
+    border-color: var(--accent-color);
 }
 
-.partner-click-area-right {
-    right: -50vw;
-    width: calc(50% + 50vw);
+.slider-btn-left {
+    left: 12px;
+}
+
+.slider-btn-right {
+    right: 12px;
 }
 
 /* Footer Partners */
@@ -792,6 +805,19 @@ section p {
 }
 
 /* Location */
+#location {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 5rem 2rem 6rem;
+}
+
+.location-intro {
+    margin-bottom: 2.5rem;
+    line-height: 1.9;
+    color: var(--text-color);
+    font-size: 1rem;
+}
+
 .location-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
