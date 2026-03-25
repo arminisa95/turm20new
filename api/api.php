@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 // Configuration - UPDATE THESE
 $config = [
-    'upload_secret' => 'your_secure_upload_secret_here',  // Change this!
+    'upload_secret' => 'Limbic3000',  // Admin Panel Login Passwort
     'upload_dir' => 'uploads/videos/',  // Relative to webroot
     'max_upload_size' => 500 * 1024 * 1024,  // 500MB
     'allowed_extensions' => ['mp4', 'webm', 'ogg', 'mov'],

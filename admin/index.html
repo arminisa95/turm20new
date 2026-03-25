@@ -262,7 +262,7 @@
         <h1>Admin Panel</h1>
         <input type="password" id="token-input" placeholder="Admin Secret" />
         <button class="btn btn-login" onclick="login()">Anmelden</button>
-        <p class="login-hint">Secret aus <code>api.php</code> Konfiguration → <code>upload_secret</code>
+        <p class="login-hint">Login-Passwort: <code>Limbic3000</code>
         <div id="login-error" class="error-msg"></div>
     </div>
 </div>
@@ -330,7 +330,7 @@
 
 <script>
 // World4You PHP Backend Configuration - UPDATE THIS URL after deploying to World4You
-const API_BASE = 'https://sommertheaterlinz.at/api';  // CHANGE to your actual domain
+const API_BASE = 'https://www.sommertheaterlinz.at/api';
 
 let token   = '';  // Now used as upload secret
 let fileSha = '';  // Not used with PHP backend

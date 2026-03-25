@@ -3,7 +3,7 @@
 
 (function () {
     // UPDATE THIS to your actual domain
-    const API_BASE = 'https://sommertheaterlinz.at/api';  // CHANGE THIS
+    const API_BASE = 'https://www.sommertheaterlinz.at/api';
 
     fetch(`${API_BASE}/content.php?v=${Date.now()}`, { cache: 'no-cache' })
         .then(r => r.json())
