@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turm 20 — Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg:        #1a1208;
+            --surface:   #2c2013;
+            --surface2:  #3a2d1a;
+            --border:    rgba(107,129,109,0.3);
+            --green:     #6B816D;
+            --gold:      #F6E8B9;
+            --red:       #c0392b;
+            --radius:    10px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg);
+            color: var(--gold);
+            min-height: 100vh;
+            font-size: 0.95rem;
+        }
+
+        /* ── LOGIN ─────────────────────────────── */
+        .login-screen {
+            display: flex; align-items: center; justify-content: center;
+            min-height: 100vh;
+        }
+        .login-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            width: 100%; max-width: 420px;
+            text-align: center;
+        }
+        .login-logo {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: var(--gold);
+            margin-bottom: 0.25rem;
+        }
+        .login-box h1 { font-size: 1rem; font-weight: 400; color: var(--green); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 2rem; }
+        .login-box input {
+            width: 100%;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            color: var(--gold);
+            padding: 0.85rem 1rem;
+            font-family: monospace;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .login-box input:focus { border-color: var(--green); }
+        .login-box input::placeholder { color: rgba(246,232,185,0.3); }
+        .btn-login {
+            width: 100%;
+            background: var(--green);
+            color: var(--bg);
+            border: none;
+            border-radius: var(--radius);
+            padding: 0.85rem;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .btn-login:hover { opacity: 0.85; }
+        .login-hint { font-size: 0.75rem; color: var(--green); margin-top: 1rem; }
+        .error-msg { color: #e74c3c; font-size: 0.85rem; margin-top: 0.75rem; min-height: 1.2rem; }
+
+        /* ── LAYOUT ─────────────────────────────── */
+        .hidden { display: none !important; }
+
+        .admin-header {
+            position: sticky; top: 0; z-index: 100;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0.85rem 2rem;
+        }
+        .header-left { display: flex; align-items: center; gap: 0.75rem; }
+        .admin-logo { font-size: 1.4rem; font-weight: 300; letter-spacing: 3px; }
+        .admin-badge { font-size: 0.7rem; background: var(--green); color: var(--bg); padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 600; text-transform: uppercase; }
+        .header-right { display: flex; align-items: center; gap: 0.75rem; }
+
+        .btn { border: none; border-radius: var(--radius); padding: 0.6rem 1.2rem; font-family: 'Poppins', sans-serif; font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+        .btn-save { background: var(--green); color: var(--bg); }
+        .btn-save:hover { opacity: 0.85; }
+        .btn-save:disabled { opacity: 0.4; cursor: not-allowed; }
+        .btn-logout { background: transparent; border: 1px solid var(--border); color: var(--gold); }
+        .btn-logout:hover { border-color: var(--gold); }
+        .btn-add { background: transparent; border: 1px solid var(--green); color: var(--green); }
+        .btn-add:hover { background: var(--green); color: var(--bg); }
+        .btn-danger { background: transparent; border: 1px solid var(--red); color: var(--red); padding: 0.4rem 0.8rem; font-size: 0.8rem; }
+        .btn-danger:hover { background: var(--red); color: #fff; }
+        .btn-edit { background: transparent; border: 1px solid var(--border); color: var(--gold); padding: 0.4rem 0.8rem; font-size: 0.8rem; }
+        .btn-edit:hover { border-color: var(--green); color: var(--green); }
+
+        .save-status { font-size: 0.8rem; color: var(--green); transition: opacity 0.5s; }
+
+        /* ── TABS ─────────────────────────────── */
+        .tab-nav {
+            display: flex; gap: 0;
+            border-bottom: 1px solid var(--border);
+            padding: 0 2rem;
+            background: var(--surface);
+        }
+        .tab-btn {
+            background: none; border: none; color: rgba(246,232,185,0.5);
+            padding: 1rem 1.5rem;
+            font-family: 'Poppins', sans-serif; font-size: 0.9rem; font-weight: 500;
+            cursor: pointer; border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        .tab-btn:hover { color: var(--gold); }
+        .tab-btn.active { color: var(--gold); border-bottom-color: var(--green); }
+
+        .tab-content { display: none; padding: 2rem; max-width: 960px; margin: 0 auto; }
+        .tab-content.active { display: block; }
+
+        .tab-header {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+        .tab-header h2 { font-size: 1.3rem; font-weight: 500; }
+
+        /* ── TERMINE TABLE ─────────────────────── */
+        .termine-table {
+            width: 100%; border-collapse: collapse;
+            background: var(--surface); border-radius: var(--radius);
+            overflow: hidden;
+        }
+        .termine-table th {
+            background: var(--surface2); text-align: left;
+            padding: 0.75rem 1rem; font-size: 0.8rem;
+            text-transform: uppercase; letter-spacing: 1px;
+            color: var(--green); font-weight: 500;
+        }
+        .termine-table td {
+            padding: 0.85rem 1rem; border-top: 1px solid var(--border);
+            vertical-align: middle;
+        }
+        .termine-table tr:hover td { background: rgba(107,129,109,0.05); }
+        .sold-out-badge {
+            background: rgba(192,57,43,0.15); color: #e74c3c;
+            border: 1px solid rgba(192,57,43,0.3); border-radius: 4px;
+            font-size: 0.7rem; padding: 0.15rem 0.5rem;
+        }
+        .available-badge {
+            background: rgba(107,129,109,0.15); color: var(--green);
+            border: 1px solid var(--border); border-radius: 4px;
+            font-size: 0.7rem; padding: 0.15rem 0.5rem;
+        }
+        .ticket-url { font-size: 0.75rem; color: var(--green); max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        td.actions { display: flex; gap: 0.5rem; align-items: center; }
+
+        /* ── PROGRAMME ─────────────────────────── */
+        .program-card-admin {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1rem;
+            display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+        }
+        .program-info h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.2rem; }
+        .program-info p { font-size: 0.85rem; color: var(--green); }
+        .program-info .program-url { font-size: 0.75rem; color: rgba(246,232,185,0.4); margin-top: 0.2rem; }
+        .program-actions { display: flex; gap: 0.5rem; flex-shrink: 0; }
+
+        /* ── MODAL ─────────────────────────────── */
+        .modal-overlay {
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.7);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 200; padding: 1rem;
+        }
+        .modal {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            width: 100%; max-width: 520px;
+            max-height: 90vh; overflow-y: auto;
+        }
+        .modal h2 { font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem; }
+        .form-group { margin-bottom: 1.25rem; }
+        .form-group label { display: block; font-size: 0.8rem; color: var(--green); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.4rem; }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            color: var(--gold);
+            padding: 0.75rem 1rem;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus { border-color: var(--green); }
+        .form-group textarea { min-height: 100px; resize: vertical; }
+        .form-group select option { background: var(--surface2); }
+        .form-check { display: flex; align-items: center; gap: 0.75rem; }
+        .form-check input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--green); cursor: pointer; }
+        .form-check label { font-size: 0.9rem; text-transform: none; letter-spacing: 0; color: var(--gold); cursor: pointer; }
+        .modal-actions { display: flex; gap: 0.75rem; justify-content: flex-end; margin-top: 1.5rem; }
+        .btn-cancel { background: transparent; border: 1px solid var(--border); color: var(--gold); }
+        .btn-cancel:hover { border-color: var(--gold); }
+        .btn-confirm { background: var(--green); color: var(--bg); }
+        .btn-confirm:hover { opacity: 0.85; }
+
+        /* ── TOAST ─────────────────────────────── */
+        .toast {
+            position: fixed; bottom: 2rem; right: 2rem;
+            padding: 0.85rem 1.5rem; border-radius: var(--radius);
+            font-size: 0.9rem; font-weight: 500;
+            z-index: 300; opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        .toast.show { opacity: 1; }
+        .toast.success { background: var(--green); color: var(--bg); }
+        .toast.error { background: var(--red); color: #fff; }
+
+        /* ── LOADING ─────────────────────────────── */
+        .loading {
+            text-align: center; padding: 3rem;
+            color: var(--green); font-size: 0.9rem; letter-spacing: 1px;
+        }
+
+        @media (max-width: 600px) {
+            .admin-header { padding: 0.75rem 1rem; }
+            .tab-content { padding: 1rem; }
+            .termine-table th:nth-child(4),
+            .termine-table td:nth-child(4) { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ── LOGIN SCREEN ── -->
+<div id="login-screen" class="login-screen">
+    <div class="login-box">
+        <div class="login-logo">Turm 20</div>
+        <h1>Admin Panel</h1>
+        <input type="password" id="token-input" placeholder="GitHub Token (ghp_...)" />
+        <button class="btn btn-login" onclick="login()">Anmelden</button>
+        <p class="login-hint">Token benötigt <strong>repo</strong> Berechtigung →
+            <a href="https://github.com/settings/tokens/new?scopes=repo" target="_blank" style="color:var(--green)">erstellen</a>
+        </p>
+        <div id="login-error" class="error-msg"></div>
+    </div>
+</div>
+
+<!-- ── ADMIN PANEL ── -->
+<div id="admin-panel" class="hidden">
+
+    <header class="admin-header">
+        <div class="header-left">
+            <span class="admin-logo">Turm 20</span>
+            <span class="admin-badge">Admin</span>
+        </div>
+        <div class="header-right">
+            <span id="save-status" class="save-status"></span>
+            <button class="btn btn-save" id="save-btn" onclick="saveAll()">💾 Speichern</button>
+            <button class="btn btn-logout" onclick="logout()">Logout</button>
+        </div>
+    </header>
+
+    <nav class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab('termine', this)">Termine</button>
+        <button class="tab-btn" onclick="switchTab('programme', this)">Programme</button>
+    </nav>
+
+    <!-- Termine -->
+    <div id="tab-termine" class="tab-content active">
+        <div class="tab-header">
+            <h2>Termine & Tickets</h2>
+            <button class="btn btn-add" onclick="openTerminModal()">+ Neuer Termin</button>
+        </div>
+        <div id="termine-container"><div class="loading">Lade Inhalte…</div></div>
+    </div>
+
+    <!-- Programme -->
+    <div id="tab-programme" class="tab-content">
+        <div class="tab-header">
+            <h2>Programme</h2>
+            <button class="btn btn-add" onclick="openProgramModal()">+ Neues Programm</button>
+        </div>
+        <div id="programme-container"><div class="loading">Lade Inhalte…</div></div>
+    </div>
+
+</div>
+
+<!-- ── MODAL ── -->
+<div id="modal-overlay" class="modal-overlay hidden">
+    <div class="modal" id="modal-content" onclick="event.stopPropagation()"></div>
+</div>
+
+<!-- ── TOAST ── -->
+<div id="toast" class="toast"></div>
+
+<script>
+const REPO  = 'arminisa95/turm20new';
+const FILE  = 'data/content.json';
+const API   = 'https://api.github.com';
+
+let token   = '';
+let fileSha = '';
+let data    = { termine: [], programs: [] };
+let dirty   = false;
+
+// ── AUTH ──────────────────────────────────
+async function login() {
+    const inp = document.getElementById('token-input');
+    const err = document.getElementById('login-error');
+    token = inp.value.trim();
+    if (!token) { err.textContent = 'Bitte Token eingeben.'; return; }
+    err.textContent = '';
+    const btn = document.querySelector('.btn-login');
+    btn.textContent = 'Prüfe…'; btn.disabled = true;
+
+    try {
+        await loadFromGitHub();
+        sessionStorage.setItem('gh_token', token);
+        document.getElementById('login-screen').classList.add('hidden');
+        document.getElementById('admin-panel').classList.remove('hidden');
+        render();
+    } catch(e) {
+        err.textContent = 'Ungültiger Token oder Repository nicht gefunden.';
+    } finally {
+        btn.textContent = 'Anmelden'; btn.disabled = false;
+    }
+}
+
+function logout() {
+    sessionStorage.removeItem('gh_token');
+    token = '';
+    document.getElementById('admin-panel').classList.add('hidden');
+    document.getElementById('login-screen').classList.remove('hidden');
+    document.getElementById('token-input').value = '';
+}
+
+// ── GITHUB API ────────────────────────────
+async function loadFromGitHub() {
+    const res = await fetch(`${API}/repos/${REPO}/contents/${FILE}`, {
+        headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' }
+    });
+    if (!res.ok) throw new Error('Load failed');
+    const json = await res.json();
+    fileSha = json.sha;
+    const raw = decodeURIComponent(escape(atob(json.content.replace(/\n/g, ''))));
+    data = JSON.parse(raw);
+    if (!data.termine)  data.termine  = [];
+    if (!data.programs) data.programs = [];
+}
+
+async function saveAll() {
+    const btn = document.getElementById('save-btn');
+    btn.textContent = 'Speichert…'; btn.disabled = true;
+    try {
+        const jsonStr = JSON.stringify(data, null, 2);
+        const encoded = btoa(unescape(encodeURIComponent(jsonStr)));
+        const res = await fetch(`${API}/repos/${REPO}/contents/${FILE}`, {
+            method: 'PUT',
+            headers: {
+                Authorization: `token ${token}`,
+                Accept: 'application/vnd.github.v3+json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                message: 'Admin: Inhalt aktualisiert',
+                content: encoded,
+                sha: fileSha
+            })
+        });
+        if (!res.ok) throw new Error('Save failed');
+        const result = await res.json();
+        fileSha = result.content.sha;
+        dirty = false;
+        showToast('Gespeichert! Änderungen sind live.', 'success');
+        document.getElementById('save-status').textContent = '';
+    } catch(e) {
+        showToast('Fehler beim Speichern. Bitte erneut versuchen.', 'error');
+    } finally {
+        btn.textContent = '💾 Speichern'; btn.disabled = false;
+    }
+}
+
+function markDirty() {
+    dirty = true;
+    document.getElementById('save-status').textContent = '● Ungespeicherte Änderungen';
+}
+
+// ── RENDER ────────────────────────────────
+function render() {
+    renderTermine();
+    renderProgramme();
+}
+
+function renderTermine() {
+    const cont = document.getElementById('termine-container');
+    if (!data.termine.length) {
+        cont.innerHTML = '<p style="color:var(--green);padding:2rem;text-align:center">Keine Termine vorhanden.</p>';
+        return;
+    }
+    cont.innerHTML = `
+        <table class="termine-table">
+            <thead>
+                <tr>
+                    <th>Tag</th>
+                    <th>Datum</th>
+                    <th>Stück</th>
+                    <th>Ticket URL</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                ${data.termine.map((t, i) => `
+                <tr>
+                    <td>${t.day}</td>
+                    <td><strong>${t.date}</strong></td>
+                    <td>${t.title}</td>
+                    <td><span class="ticket-url" title="${t.ticketUrl}">${t.ticketUrl}</span></td>
+                    <td>${t.soldOut
+                        ? '<span class="sold-out-badge">Ausverkauft</span>'
+                        : '<span class="available-badge">Verfügbar</span>'}</td>
+                    <td class="actions">
+                        <button class="btn btn-edit" onclick="openTerminModal(${i})">✏️</button>
+                        <button class="btn btn-danger" onclick="deleteTermin(${i})">🗑️</button>
+                    </td>
+                </tr>`).join('')}
+            </tbody>
+        </table>`;
+}
+
+function renderProgramme() {
+    const cont = document.getElementById('programme-container');
+    if (!data.programs.length) {
+        cont.innerHTML = '<p style="color:var(--green);padding:2rem;text-align:center">Keine Programme vorhanden.</p>';
+        return;
+    }
+    cont.innerHTML = data.programs.map((p, i) => `
+        <div class="program-card-admin">
+            <div class="program-info">
+                <h3>${p.title}</h3>
+                <p>${p.subtitle}</p>
+                <span class="program-url">${p.url}</span>
+            </div>
+            <div class="program-actions">
+                <button class="btn btn-edit" onclick="openProgramModal(${i})">✏️ Bearbeiten</button>
+                <button class="btn btn-danger" onclick="deleteProgram(${i})">🗑️</button>
+            </div>
+        </div>`).join('');
+}
+
+// ── TABS ──────────────────────────────────
+function switchTab(name, el) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('tab-' + name).classList.add('active');
+}
+
+// ── MODAL HELPERS ─────────────────────────
+function openModal(html) {
+    document.getElementById('modal-content').innerHTML = html;
+    document.getElementById('modal-overlay').classList.remove('hidden');
+}
+function closeModal() {
+    document.getElementById('modal-overlay').classList.add('hidden');
+}
+document.getElementById('modal-overlay').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+});
+
+// ── TERMINE CRUD ──────────────────────────
+const DAYS = ['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'];
+
+function openTerminModal(idx) {
+    const isEdit = idx !== undefined;
+    const t = isEdit ? data.termine[idx] : { day:'Mittwoch', date:'', title:'', ticketUrl:'', soldOut:false };
+    openModal(`
+        <h2>${isEdit ? 'Termin bearbeiten' : 'Neuer Termin'}</h2>
+        <div class="form-group">
+            <label>Wochentag</label>
+            <select id="f-day">
+                ${DAYS.map(d => `<option${d===t.day?' selected':''}>${d}</option>`).join('')}
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Datum (z.B. 01.07.)</label>
+            <input id="f-date" type="text" value="${t.date}" placeholder="01.07." />
+        </div>
+        <div class="form-group">
+            <label>Stückname</label>
+            <input id="f-title" type="text" value="${t.title}" placeholder="Romeo & Julia" />
+        </div>
+        <div class="form-group">
+            <label>Ticket URL</label>
+            <input id="f-url" type="url" value="${t.ticketUrl}" placeholder="https://kupfticket.com/..." />
+        </div>
+        <div class="form-group">
+            <div class="form-check">
+                <input type="checkbox" id="f-soldout" ${t.soldOut ? 'checked' : ''} />
+                <label for="f-soldout">Ausverkauft</label>
+            </div>
+        </div>
+        <div class="modal-actions">
+            <button class="btn btn-cancel" onclick="closeModal()">Abbrechen</button>
+            <button class="btn btn-confirm" onclick="saveTermin(${isEdit ? idx : 'null'})">Speichern</button>
+        </div>
+    `);
+}
+
+function saveTermin(idx) {
+    const t = {
+        id:        idx !== null ? data.termine[idx].id : 't' + Date.now(),
+        day:       document.getElementById('f-day').value,
+        date:      document.getElementById('f-date').value.trim(),
+        title:     document.getElementById('f-title').value.trim(),
+        ticketUrl: document.getElementById('f-url').value.trim(),
+        soldOut:   document.getElementById('f-soldout').checked
+    };
+    if (!t.date || !t.title) { showToast('Bitte Datum und Titel ausfüllen.', 'error'); return; }
+    if (idx !== null) { data.termine[idx] = t; }
+    else { data.termine.push(t); }
+    closeModal();
+    markDirty();
+    renderTermine();
+}
+
+function deleteTermin(idx) {
+    if (!confirm(`Termin "${data.termine[idx].date}" wirklich löschen?`)) return;
+    data.termine.splice(idx, 1);
+    markDirty();
+    renderTermine();
+}
+
+// ── PROGRAMME CRUD ────────────────────────
+function openProgramModal(idx) {
+    const isEdit = idx !== undefined;
+    const p = isEdit ? data.programs[idx] : { id:'', title:'', subtitle:'', url:'' };
+    openModal(`
+        <h2>${isEdit ? 'Programm bearbeiten' : 'Neues Programm'}</h2>
+        <div class="form-group">
+            <label>Titel</label>
+            <input id="p-title" type="text" value="${p.title}" placeholder="Romeo & Julia" />
+        </div>
+        <div class="form-group">
+            <label>Untertitel</label>
+            <input id="p-subtitle" type="text" value="${p.subtitle}" placeholder="Kurzbeschreibung" />
+        </div>
+        <div class="form-group">
+            <label>Seite (URL)</label>
+            <input id="p-url" type="text" value="${p.url}" placeholder="romeo.html" />
+        </div>
+        <div class="modal-actions">
+            <button class="btn btn-cancel" onclick="closeModal()">Abbrechen</button>
+            <button class="btn btn-confirm" onclick="saveProgram(${isEdit ? idx : 'null'})">Speichern</button>
+        </div>
+    `);
+}
+
+function saveProgram(idx) {
+    const p = {
+        id:       idx !== null ? data.programs[idx].id : 'p' + Date.now(),
+        title:    document.getElementById('p-title').value.trim(),
+        subtitle: document.getElementById('p-subtitle').value.trim(),
+        url:      document.getElementById('p-url').value.trim()
+    };
+    if (!p.title || !p.url) { showToast('Bitte Titel und URL ausfüllen.', 'error'); return; }
+    if (idx !== null) { data.programs[idx] = p; }
+    else { data.programs.push(p); }
+    closeModal();
+    markDirty();
+    renderProgramme();
+}
+
+function deleteProgram(idx) {
+    if (!confirm(`Programm "${data.programs[idx].title}" wirklich löschen?`)) return;
+    data.programs.splice(idx, 1);
+    markDirty();
+    renderProgramme();
+}
+
+// ── TOAST ─────────────────────────────────
+function showToast(msg, type = 'success') {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = `toast ${type} show`;
+    setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+// ── INIT ──────────────────────────────────
+(function init() {
+    const saved = sessionStorage.getItem('gh_token');
+    if (saved) {
+        token = saved;
+        document.getElementById('token-input').value = token;
+        loadFromGitHub().then(() => {
+            document.getElementById('login-screen').classList.add('hidden');
+            document.getElementById('admin-panel').classList.remove('hidden');
+            render();
+        }).catch(() => sessionStorage.removeItem('gh_token'));
+    }
+})();
+</script>
+</body>
+</html>

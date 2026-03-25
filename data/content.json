@@ -1,0 +1,88 @@
+{
+  "termine": [
+    {
+      "id": "t1",
+      "day": "Mittwoch",
+      "date": "01.07.",
+      "title": "Romeo & Julia",
+      "ticketUrl": "https://kupfticket.com/events/romeoundjulia-9365a54ace",
+      "soldOut": false
+    },
+    {
+      "id": "t2",
+      "day": "Donnerstag",
+      "date": "02.07.",
+      "title": "Romeo & Julia",
+      "ticketUrl": "https://kupfticket.com/events/romeoundjulia-111549850d",
+      "soldOut": false
+    },
+    {
+      "id": "t3",
+      "day": "Freitag",
+      "date": "03.07.",
+      "title": "Romeo & Julia",
+      "ticketUrl": "https://kupfticket.com/events/romeoundjulia-cfb9e9b6ca",
+      "soldOut": false
+    },
+    {
+      "id": "t4",
+      "day": "Sonntag",
+      "date": "05.07.",
+      "title": "Romeo & Julia",
+      "ticketUrl": "https://kupfticket.com/events/romeoundjulia-ad3a8f4fb5",
+      "soldOut": false
+    },
+    {
+      "id": "t5",
+      "day": "Mittwoch",
+      "date": "08.07.",
+      "title": "Romeo & Julia",
+      "ticketUrl": "https://kupfticket.com/events/romeoundjulia-31bb0b0ea3",
+      "soldOut": false
+    },
+    {
+      "id": "t6",
+      "day": "Donnerstag",
+      "date": "09.07.",
+      "title": "Romeo & Julia",
+      "ticketUrl": "https://kupfticket.com/events/romeoundjulia-25504065c5",
+      "soldOut": false
+    },
+    {
+      "id": "t7",
+      "day": "Freitag",
+      "date": "10.07.",
+      "title": "Romeo & Julia",
+      "ticketUrl": "https://kupfticket.com/events/romeoundjulia-12ffd7834f",
+      "soldOut": false
+    },
+    {
+      "id": "t8",
+      "day": "Samstag",
+      "date": "11.07.",
+      "title": "Romeo & Julia",
+      "ticketUrl": "https://kupfticket.com/events/romeoundjulia-c8ad7199d9",
+      "soldOut": false
+    }
+  ],
+  "programs": [
+    {
+      "id": "romeo",
+      "title": "Romeo & Julia",
+      "subtitle": "Shakespeare's zeitlose Liebesgeschichte",
+      "url": "romeo.html"
+    },
+    {
+      "id": "rotkapp",
+      "title": "Rotkäppchen",
+      "subtitle": "Das beliebte Märchen für die ganze Familie",
+      "url": "rotkapp.html"
+    },
+    {
+      "id": "extras",
+      "title": "Extras",
+      "subtitle": "Konzerte, Lesungen & mehr",
+      "url": "extras.html"
+    }
+  ]
+}
