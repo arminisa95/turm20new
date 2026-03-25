@@ -395,7 +395,7 @@ async function saveAll() {
         const result = await res.json();
         fileSha = result.content.sha;
         dirty = false;
-        showToast('Gespeichert! Änderungen sind live.', 'success');
+        showToast('Gespeichert! Änderungen sind in ~1–2 Min. live (GitHub Pages).', 'success');
         document.getElementById('save-status').textContent = '';
     } catch(e) {
         showToast('Fehler beim Speichern. Bitte erneut versuchen.', 'error');

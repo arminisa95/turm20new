@@ -1,7 +1,7 @@
 // Loads data/content.json and injects dynamic content into the page
 
 (function () {
-    fetch('data/content.json')
+    fetch('data/content.json?v=' + Date.now(), { cache: 'no-cache' })
         .then(r => r.json())
         .then(data => {
             renderTermine(data.termine);
