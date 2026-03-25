@@ -334,8 +334,10 @@
 const REPO  = 'arminisa95/turm20new';
 const FILE  = 'data/content.json';
 const API   = 'https://api.github.com';
+const UPLOAD_API = 'https://your-render-app.onrender.com'; // REPLACE after Render deploy
 
 let token   = '';
+let uploadSecret = '';
 let fileSha = '';
 let data    = { termine: [], programs: [] };
 let dirty   = false;
@@ -673,6 +675,15 @@ function openHeroVideoModal() {
     openModal(`
         <h2>🎬 Hero Video</h2>
         <p style="color:var(--green);font-size:0.85rem;margin-bottom:1rem">Das Hero Video läuft als fullscreen Hintergrund auf der turm20.html Seite.</p>
+        
+        <!-- Upload Section -->
+        <div style="border:2px dashed var(--border);padding:1.5rem;text-align:center;margin-bottom:1.5rem;border-radius:var(--radius);">
+            <p style="margin-bottom:1rem;color:var(--gold)">📁 Datei hochladen (max 500MB)</p>
+            <input type="file" id="hero-file" accept="video/*" style="display:none" onchange="handleFileUpload(this, 'hero')">
+            <button class="btn btn-edit" onclick="document.getElementById('hero-file').click()">Datei auswählen</button>
+            <div id="hero-upload-status" style="margin-top:1rem;font-size:0.85rem;color:var(--green)"></div>
+        </div>
+        
         <div class="form-group">
             <label>Titel (z.B. "Turm 20")</label>
             <input id="h-title" type="text" value="${h.title}" placeholder="Turm 20" />
@@ -721,6 +732,15 @@ function openVideoModal(idx) {
     const v = isEdit ? data.videos.grid[idx] : { id: 'v' + Date.now(), title: '', url: '' };
     openModal(`
         <h2>${isEdit ? 'Video bearbeiten' : 'Neues Video'}</h2>
+        
+        <!-- Upload Section -->
+        <div style="border:2px dashed var(--border);padding:1.5rem;text-align:center;margin-bottom:1.5rem;border-radius:var(--radius);">
+            <p style="margin-bottom:1rem;color:var(--gold)">📁 Datei hochladen (max 500MB)</p>
+            <input type="file" id="video-file" accept="video/*" style="display:none" onchange="handleFileUpload(this, 'grid')">
+            <button class="btn btn-edit" onclick="document.getElementById('video-file').click()">Datei auswählen</button>
+            <div id="grid-upload-status" style="margin-top:1rem;font-size:0.85rem;color:var(--green)"></div>
+        </div>
+        
         <div class="form-group">
             <label>Titel</label>
             <input id="v-title" type="text" value="${v.title}" placeholder="z.B. Teaser Sommertheater" />
@@ -759,6 +779,65 @@ function deleteVideo(idx) {
     closeModal();
     markDirty();
     renderVideos();
+}
+
+// ── FILE UPLOAD TO R2 ─────────────────────
+async function handleFileUpload(input, type) {
+    const file = input.files[0];
+    if (!file) return;
+
+    // Check file size (500MB limit)
+    if (file.size > 500 * 1024 * 1024) {
+        showToast('Datei zu groß (max 500MB)', 'error');
+        return;
+    }
+
+    const statusEl = document.getElementById(type + '-upload-status');
+    statusEl.textContent = '⏳ Lade hoch...';
+
+    // Get upload secret if not set
+    if (!uploadSecret) {
+        uploadSecret = prompt('Upload-Secret eingeben (gleiches Secret wie in Render):');
+        if (!uploadSecret) {
+            statusEl.textContent = '❌ Abgebrochen';
+            return;
+        }
+    }
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+        const res = await fetch(UPLOAD_API + '/upload', {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + uploadSecret
+            },
+            body: formData
+        });
+
+        if (!res.ok) throw new Error('Upload failed');
+
+        const result = await res.json();
+        if (result.success) {
+            statusEl.textContent = '✅ Hochgeladen!';
+            // Auto-fill the URL field
+            if (type === 'hero') {
+                const urlInput = document.getElementById('h-url');
+                if (urlInput) urlInput.value = result.url;
+            } else {
+                const urlInput = document.getElementById('v-url');
+                if (urlInput) urlInput.value = result.url;
+            }
+            showToast('Upload erfolgreich! URL wurde eingefügt.', 'success');
+        } else {
+            throw new Error(result.error || 'Upload failed');
+        }
+    } catch (err) {
+        console.error('Upload error:', err);
+        statusEl.textContent = '❌ Fehler: ' + err.message;
+        showToast('Upload fehlgeschlagen: ' + err.message, 'error');
+    }
 }
 
 // ── TOAST ─────────────────────────────────
