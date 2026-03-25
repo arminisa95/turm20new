@@ -4,8 +4,15 @@
     fetch('data/content.json?v=' + Date.now(), { cache: 'no-cache' })
         .then(r => r.json())
         .then(data => {
-            renderTermine(data.termine);
-            renderPrograms(data.programs);
+            if (document.querySelector('.terminslider')) {
+                renderTermine(data.termine);
+            }
+            if (document.querySelector('.program-cards')) {
+                renderPrograms(data.programs);
+            }
+            if (document.querySelector('.video-hero') || document.querySelector('.video-grid')) {
+                renderVideos(data.videos);
+            }
         })
         .catch(() => {
             // Fallback: keep static content if fetch fails
@@ -47,5 +54,39 @@
                 <p>${p.subtitle}</p>
             </a>
         `).join('');
+    }
+
+    function renderVideos(videos) {
+        if (!videos) return;
+
+        // Render Hero Video
+        const heroSection = document.querySelector('.video-hero');
+        if (heroSection && videos.hero) {
+            const h = videos.hero;
+            const videoEl = heroSection.querySelector('.hero-video source');
+            const titleEl = heroSection.querySelector('.video-hero-content h1');
+            const subtitleEl = heroSection.querySelector('.video-hero-content p');
+
+            if (videoEl) videoEl.src = h.url;
+            if (titleEl) titleEl.textContent = h.title || 'Turm 20';
+            if (subtitleEl) subtitleEl.textContent = h.subtitle || 'Theater & Kulturverein · Linz';
+
+            // Reload video with new source
+            const video = heroSection.querySelector('.hero-video');
+            if (video) video.load();
+        }
+
+        // Render Video Grid
+        const grid = document.querySelector('.video-grid');
+        if (grid && videos.grid) {
+            grid.innerHTML = videos.grid.map(v => `
+                <div class="video-item">
+                    <video controls preload="metadata">
+                        <source src="${v.url}" type="video/mp4">
+                    </video>
+                    <p>${v.title}</p>
+                </div>
+            `).join('');
+        }
     }
 })();

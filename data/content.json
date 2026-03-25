@@ -84,5 +84,30 @@
       "subtitle": "Konzerte, Lesungen & mehr",
       "url": "extras.html"
     }
-  ]
+  ],
+  "videos": {
+    "hero": {
+      "id": "hero-garten",
+      "title": "Turm 20",
+      "subtitle": "Theater & Kulturverein · Linz",
+      "url": "videos/video-garten.mp4"
+    },
+    "grid": [
+      {
+        "id": "v1",
+        "title": "Teaser Sommertheater",
+        "url": "videos/Teaser_Sommertheater.mp4"
+      },
+      {
+        "id": "v2",
+        "title": "Sommertheater Opening",
+        "url": "videos/start.mp4"
+      },
+      {
+        "id": "v3",
+        "title": "Impressionen 2024",
+        "url": "videos/Impressionen aus 2024! Danke Domas Schwarz fürs grandiose Video! YouTube Link im ersten Kommenta.mp4"
+      }
+    ]
+  }
 }

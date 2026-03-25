@@ -287,6 +287,7 @@
     <nav class="tab-nav">
         <button class="tab-btn active" onclick="switchTab('termine', this)">Termine</button>
         <button class="tab-btn" onclick="switchTab('programme', this)">Programme</button>
+        <button class="tab-btn" onclick="switchTab('videos', this)">Videos</button>
     </nav>
 
     <!-- Termine -->
@@ -305,6 +306,18 @@
             <button class="btn btn-add" onclick="openProgramModal()">+ Neues Programm</button>
         </div>
         <div id="programme-container"><div class="loading">Lade Inhalte…</div></div>
+    </div>
+
+    <!-- Videos -->
+    <div id="tab-videos" class="tab-content">
+        <div class="tab-header">
+            <h2>Videos</h2>
+            <div>
+                <button class="btn btn-edit" onclick="openHeroVideoModal()" style="margin-right:0.5rem">🎬 Hero Video</button>
+                <button class="btn btn-add" onclick="openVideoModal()">+ Neues Video</button>
+            </div>
+        </div>
+        <div id="videos-container"><div class="loading">Lade Inhalte…</div></div>
     </div>
 
 </div>
@@ -370,6 +383,7 @@ async function loadFromGitHub() {
     data = JSON.parse(raw);
     if (!data.termine)  data.termine  = [];
     if (!data.programs) data.programs = [];
+    if (!data.videos)   data.videos   = { hero: null, grid: [] };
 }
 
 async function saveAll() {
@@ -413,6 +427,7 @@ function markDirty() {
 function render() {
     renderTermine();
     renderProgramme();
+    renderVideos();
 }
 
 function renderTermine() {
@@ -600,6 +615,150 @@ function deleteProgram(idx) {
     data.programs.splice(idx, 1);
     markDirty();
     renderProgramme();
+}
+
+// ── VIDEOS RENDER & CRUD ─────────────────
+function renderVideos() {
+    const cont = document.getElementById('videos-container');
+    const hero = data.videos?.hero;
+    const grid = data.videos?.grid || [];
+
+    let html = '';
+
+    // Hero Video Section
+    html += '<div style="margin-bottom:2rem">';
+    html += '<h3 style="font-size:1rem;font-weight:500;margin-bottom:1rem;color:var(--green);text-transform:uppercase;letter-spacing:1px">🎬 Hero Video (Fullscreen Hintergrund)</h3>';
+    if (hero) {
+        html += `<div class="program-card-admin" style="border-left:3px solid var(--green)">
+            <div class="program-info">
+                <h3>${hero.title}</h3>
+                <p>${hero.subtitle || ''}</p>
+                <span class="program-url">${hero.url}</span>
+            </div>
+            <div class="program-actions">
+                <button class="btn btn-edit" onclick="openHeroVideoModal()">✏️ Bearbeiten</button>
+            </div>
+        </div>`;
+    } else {
+        html += '<p style="color:var(--green);padding:1rem">Kein Hero Video gesetzt. Klicke "Hero Video" oben um eines hinzuzufügen.</p>';
+    }
+    html += '</div>';
+
+    // Grid Videos Section
+    html += '<div>';
+    html += '<h3 style="font-size:1rem;font-weight:500;margin-bottom:1rem;color:var(--green);text-transform:uppercase;letter-spacing:1px">📹 Video Grid</h3>';
+    if (grid.length) {
+        html += grid.map((v, i) => `
+            <div class="program-card-admin">
+                <div class="program-info">
+                    <h3>${v.title}</h3>
+                    <span class="program-url">${v.url}</span>
+                </div>
+                <div class="program-actions">
+                    <button class="btn btn-edit" onclick="openVideoModal(${i})">✏️</button>
+                    <button class="btn btn-danger" onclick="deleteVideo(${i})">🗑️</button>
+                </div>
+            </div>
+        `).join('');
+    } else {
+        html += '<p style="color:var(--green);padding:1rem;text-align:center">Keine Videos im Grid. Klicke "+ Neues Video" um welche hinzuzufügen.</p>';
+    }
+    html += '</div>';
+
+    cont.innerHTML = html;
+}
+
+function openHeroVideoModal() {
+    const h = data.videos?.hero || { id: 'hero-' + Date.now(), title: '', subtitle: '', url: '' };
+    openModal(`
+        <h2>🎬 Hero Video</h2>
+        <p style="color:var(--green);font-size:0.85rem;margin-bottom:1rem">Das Hero Video läuft als fullscreen Hintergrund auf der turm20.html Seite.</p>
+        <div class="form-group">
+            <label>Titel (z.B. "Turm 20")</label>
+            <input id="h-title" type="text" value="${h.title}" placeholder="Turm 20" />
+        </div>
+        <div class="form-group">
+            <label>Untertitel (z.B. "Theater & Kulturverein · Linz")</label>
+            <input id="h-subtitle" type="text" value="${h.subtitle}" placeholder="Theater & Kulturverein · Linz" />
+        </div>
+        <div class="form-group">
+            <label>Video URL (R2 oder lokal)</label>
+            <input id="h-url" type="url" value="${h.url}" placeholder="https://pub-xxx.r2.dev/video.mp4 oder videos/video.mp4" />
+        </div>
+        <div class="modal-actions">
+            <button class="btn btn-cancel" onclick="closeModal()">Abbrechen</button>
+            <button class="btn btn-danger" onclick="deleteHeroVideo()">Löschen</button>
+            <button class="btn btn-confirm" onclick="saveHeroVideo()">Speichern</button>
+        </div>
+    `);
+}
+
+function saveHeroVideo() {
+    const hero = {
+        id: data.videos?.hero?.id || 'hero-' + Date.now(),
+        title: document.getElementById('h-title').value.trim(),
+        subtitle: document.getElementById('h-subtitle').value.trim(),
+        url: document.getElementById('h-url').value.trim()
+    };
+    if (!hero.url) { showToast('Bitte Video URL eingeben.', 'error'); return; }
+    if (!data.videos) data.videos = { hero: null, grid: [] };
+    data.videos.hero = hero;
+    closeModal();
+    markDirty();
+    renderVideos();
+}
+
+function deleteHeroVideo() {
+    if (!confirm('Hero Video wirklich entfernen?')) return;
+    if (data.videos) data.videos.hero = null;
+    closeModal();
+    markDirty();
+    renderVideos();
+}
+
+function openVideoModal(idx) {
+    const isEdit = idx !== undefined;
+    const v = isEdit ? data.videos.grid[idx] : { id: 'v' + Date.now(), title: '', url: '' };
+    openModal(`
+        <h2>${isEdit ? 'Video bearbeiten' : 'Neues Video'}</h2>
+        <div class="form-group">
+            <label>Titel</label>
+            <input id="v-title" type="text" value="${v.title}" placeholder="z.B. Teaser Sommertheater" />
+        </div>
+        <div class="form-group">
+            <label>Video URL (R2 oder lokal)</label>
+            <input id="v-url" type="url" value="${v.url}" placeholder="https://pub-xxx.r2.dev/video.mp4 oder videos/video.mp4" />
+        </div>
+        <div class="modal-actions">
+            <button class="btn btn-cancel" onclick="closeModal()">Abbrechen</button>
+            ${isEdit ? `<button class="btn btn-danger" onclick="deleteVideo(${idx})">Löschen</button>` : ''}
+            <button class="btn btn-confirm" onclick="saveVideo(${isEdit ? idx : 'null'})">Speichern</button>
+        </div>
+    `);
+}
+
+function saveVideo(idx) {
+    const v = {
+        id: idx !== null ? data.videos.grid[idx].id : 'v' + Date.now(),
+        title: document.getElementById('v-title').value.trim(),
+        url: document.getElementById('v-url').value.trim()
+    };
+    if (!v.title || !v.url) { showToast('Bitte Titel und URL ausfüllen.', 'error'); return; }
+    if (!data.videos) data.videos = { hero: null, grid: [] };
+    if (idx !== null) { data.videos.grid[idx] = v; }
+    else { data.videos.grid.push(v); }
+    closeModal();
+    markDirty();
+    renderVideos();
+}
+
+function deleteVideo(idx) {
+    const v = data.videos.grid[idx];
+    if (!confirm(`Video "${v.title}" wirklich löschen?`)) return;
+    data.videos.grid.splice(idx, 1);
+    closeModal();
+    markDirty();
+    renderVideos();
 }
 
 // ── TOAST ─────────────────────────────────
