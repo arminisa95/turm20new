@@ -1,9 +1,17 @@
-// Loads data/content.json and injects dynamic content into the page
+// Loads content from PHP backend and injects dynamic content into the page
+// For World4You hosting with MySQL backend
 
 (function () {
-    fetch('data/content.json?v=' + Date.now(), { cache: 'no-cache' })
+    // UPDATE THIS to your actual domain
+    const API_BASE = 'https://sommertheaterlinz.at/api';  // CHANGE THIS
+
+    fetch(`${API_BASE}/content.php?v=${Date.now()}`, { cache: 'no-cache' })
         .then(r => r.json())
         .then(data => {
+            if (data.error) {
+                console.warn('Content API error:', data.error);
+                return;
+            }
             if (document.querySelector('.terminslider')) {
                 renderTermine(data.termine);
             }
@@ -14,7 +22,8 @@
                 renderVideos(data.videos);
             }
         })
-        .catch(() => {
+        .catch(err => {
+            console.warn('Could not load dynamic content:', err);
             // Fallback: keep static content if fetch fails
         });
 

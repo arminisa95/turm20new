@@ -260,11 +260,9 @@
     <div class="login-box">
         <div class="login-logo">Turm 20</div>
         <h1>Admin Panel</h1>
-        <input type="password" id="token-input" placeholder="GitHub Token (ghp_...)" />
+        <input type="password" id="token-input" placeholder="Admin Secret" />
         <button class="btn btn-login" onclick="login()">Anmelden</button>
-        <p class="login-hint">Token benötigt <strong>repo</strong> Berechtigung →
-            <a href="https://github.com/settings/tokens/new?scopes=repo" target="_blank" style="color:var(--green)">erstellen</a>
-        </p>
+        <p class="login-hint">Secret aus <code>api.php</code> Konfiguration → <code>upload_secret</code>
         <div id="login-error" class="error-msg"></div>
     </div>
 </div>
@@ -331,15 +329,12 @@
 <div id="toast" class="toast"></div>
 
 <script>
-const REPO  = 'arminisa95/turm20new';
-const FILE  = 'data/content.json';
-const API   = 'https://api.github.com';
-const UPLOAD_API = 'https://your-render-app.onrender.com'; // REPLACE after Render deploy
+// World4You PHP Backend Configuration - UPDATE THIS URL after deploying to World4You
+const API_BASE = 'https://sommertheaterlinz.at/api';  // CHANGE to your actual domain
 
-let token   = '';
-let uploadSecret = '';
-let fileSha = '';
-let data    = { termine: [], programs: [] };
+let token   = '';  // Now used as upload secret
+let fileSha = '';  // Not used with PHP backend
+let data    = { termine: [], programs: [], videos: { hero: null, grid: [] } };
 let dirty   = false;
 
 // ── AUTH ──────────────────────────────────
@@ -347,42 +342,41 @@ async function login() {
     const inp = document.getElementById('token-input');
     const err = document.getElementById('login-error');
     token = inp.value.trim();
-    if (!token) { err.textContent = 'Bitte Token eingeben.'; return; }
+    if (!token) { err.textContent = 'Bitte Upload-Secret eingeben.'; return; }
     err.textContent = '';
     const btn = document.querySelector('.btn-login');
     btn.textContent = 'Prüfe…'; btn.disabled = true;
 
     try {
-        await loadFromGitHub();
-        sessionStorage.setItem('gh_token', token);
+        await loadFromPHP();
+        sessionStorage.setItem('admin_token', token);
         document.getElementById('login-screen').classList.add('hidden');
         document.getElementById('admin-panel').classList.remove('hidden');
         render();
+        showToast('Admin Panel verbunden!', 'success');
     } catch(e) {
-        err.textContent = 'Ungültiger Token oder Repository nicht gefunden.';
+        err.textContent = 'Verbindung fehlgeschlagen. Secret prüfen.';
     } finally {
         btn.textContent = 'Anmelden'; btn.disabled = false;
     }
 }
 
 function logout() {
-    sessionStorage.removeItem('gh_token');
+    sessionStorage.removeItem('admin_token');
     token = '';
     document.getElementById('admin-panel').classList.add('hidden');
     document.getElementById('login-screen').classList.remove('hidden');
     document.getElementById('token-input').value = '';
 }
 
-// ── GITHUB API ────────────────────────────
-async function loadFromGitHub() {
-    const res = await fetch(`${API}/repos/${REPO}/contents/${FILE}`, {
-        headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' }
-    });
+// ── PHP BACKEND API ─────────────────────────
+async function loadFromPHP() {
+    const res = await fetch(`${API_BASE}/content.php?v=${Date.now()}`);
     if (!res.ok) throw new Error('Load failed');
     const json = await res.json();
-    fileSha = json.sha;
-    const raw = decodeURIComponent(escape(atob(json.content.replace(/\n/g, ''))));
-    data = JSON.parse(raw);
+    if (json.error) throw new Error(json.error);
+    
+    data = json;
     if (!data.termine)  data.termine  = [];
     if (!data.programs) data.programs = [];
     if (!data.videos)   data.videos   = { hero: null, grid: [] };
@@ -392,29 +386,23 @@ async function saveAll() {
     const btn = document.getElementById('save-btn');
     btn.textContent = 'Speichert…'; btn.disabled = true;
     try {
-        const jsonStr = JSON.stringify(data, null, 2);
-        const encoded = btoa(unescape(encodeURIComponent(jsonStr)));
-        const res = await fetch(`${API}/repos/${REPO}/contents/${FILE}`, {
-            method: 'PUT',
+        const res = await fetch(`${API_BASE}/api.php?action=save_content`, {
+            method: 'POST',
             headers: {
-                Authorization: `token ${token}`,
-                Accept: 'application/vnd.github.v3+json',
+                'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                message: 'Admin: Inhalt aktualisiert',
-                content: encoded,
-                sha: fileSha
-            })
+            body: JSON.stringify(data)
         });
         if (!res.ok) throw new Error('Save failed');
         const result = await res.json();
-        fileSha = result.content.sha;
+        if (!result.success) throw new Error(result.error || 'Save failed');
+        
         dirty = false;
-        showToast('Gespeichert! Änderungen sind in ~1–2 Min. live (GitHub Pages).', 'success');
+        showToast('Gespeichert! Änderungen sind sofort live.', 'success');
         document.getElementById('save-status').textContent = '';
     } catch(e) {
-        showToast('Fehler beim Speichern. Bitte erneut versuchen.', 'error');
+        showToast('Fehler beim Speichern: ' + e.message, 'error');
     } finally {
         btn.textContent = '💾 Speichern'; btn.disabled = false;
     }
@@ -795,23 +783,21 @@ async function handleFileUpload(input, type) {
     const statusEl = document.getElementById(type + '-upload-status');
     statusEl.textContent = '⏳ Lade hoch...';
 
-    // Get upload secret if not set
-    if (!uploadSecret) {
-        uploadSecret = prompt('Upload-Secret eingeben (gleiches Secret wie in Render):');
-        if (!uploadSecret) {
-            statusEl.textContent = '❌ Abgebrochen';
-            return;
-        }
+    // Get upload secret - use the main token
+    if (!token) {
+        statusEl.textContent = '❌ Nicht eingeloggt';
+        showToast('Bitte zuerst einloggen', 'error');
+        return;
     }
 
     const formData = new FormData();
     formData.append('file', file);
 
     try {
-        const res = await fetch(UPLOAD_API + '/upload', {
+        const res = await fetch(`${API_BASE}/api.php?action=upload`, {
             method: 'POST',
             headers: {
-                'Authorization': 'Bearer ' + uploadSecret
+                'Authorization': 'Bearer ' + token
             },
             body: formData
         });
@@ -850,15 +836,15 @@ function showToast(msg, type = 'success') {
 
 // ── INIT ──────────────────────────────────
 (function init() {
-    const saved = sessionStorage.getItem('gh_token');
+    const saved = sessionStorage.getItem('admin_token');
     if (saved) {
         token = saved;
         document.getElementById('token-input').value = token;
-        loadFromGitHub().then(() => {
+        loadFromPHP().then(() => {
             document.getElementById('login-screen').classList.add('hidden');
             document.getElementById('admin-panel').classList.remove('hidden');
             render();
-        }).catch(() => sessionStorage.removeItem('gh_token'));
+        }).catch(() => sessionStorage.removeItem('admin_token'));
     }
 })();
 </script>
