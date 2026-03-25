@@ -9,10 +9,10 @@ header('Cache-Control: no-cache, must-revalidate');
 
 // Database config - UPDATE THESE
 $dbConfig = [
-    'host' => 'localhost',
-    'name' => 'your_db_name',  // World4You database name
-    'user' => 'your_db_user',   // World4You database user
-    'pass' => 'your_db_pass'    // World4You database password
+    'host' => 'mysqlsvr75.world4you.com',
+    'name' => '6923870db5',
+    'user' => 'sql4460592',
+    'pass' => 'xr+3bg03'
 ];
 
 try {

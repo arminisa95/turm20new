@@ -1,0 +1,23 @@
+# Turm20 - World4You Datenbank Zugangsdaten
+# Gespeichert am: 25.03.2026
+# WICHTIG: Diese Datei nicht öffentlich teilen!
+
+Server:
+mysqlsvr75.world4you.com
+
+Datenbank:
+6923870db5
+
+Benutzer:
+sql4460592
+
+Passwort:
+xr+3bg03
+
+---
+PHP Konfiguration (api.php und content.php):
+---
+'db_host' => 'mysqlsvr75.world4you.com',
+'db_name' => '6923870db5',
+'db_user' => 'sql4460592',
+'db_pass' => 'xr+3bg03'

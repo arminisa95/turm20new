@@ -20,10 +20,10 @@ $config = [
     'upload_dir' => 'uploads/videos/',  // Relative to webroot
     'max_upload_size' => 500 * 1024 * 1024,  // 500MB
     'allowed_extensions' => ['mp4', 'webm', 'ogg', 'mov'],
-    'db_host' => 'localhost',
-    'db_name' => 'your_db_name',  // World4You database name
-    'db_user' => 'your_db_user',   // World4You database user
-    'db_pass' => 'your_db_pass'    // World4You database password
+    'db_host' => 'mysqlsvr75.world4you.com',
+    'db_name' => '6923870db5',
+    'db_user' => 'sql4460592',
+    'db_pass' => 'xr+3bg03'
 ];
 
 // Create upload directory if not exists
