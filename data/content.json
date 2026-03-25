@@ -63,14 +63,6 @@
       "title": "Romeo & Julia",
       "ticketUrl": "https://kupfticket.com/events/romeoundjulia-c8ad7199d9",
       "soldOut": false
-    },
-    {
-      "id": "t1774403885509",
-      "day": "Mittwoch",
-      "date": "03.05.2026",
-      "title": "jimbobimbo",
-      "ticketUrl": "google.com",
-      "soldOut": false
     }
   ],
   "programs": [
@@ -91,12 +83,6 @@
       "title": "Extras",
       "subtitle": "Konzerte, Lesungen & mehr",
       "url": "extras.html"
-    },
-    {
-      "id": "p1774403864109",
-      "title": "jimbobimbo",
-      "subtitle": "jimbo",
-      "url": "google.com"
     }
   ]
 }
