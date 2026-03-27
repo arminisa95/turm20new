@@ -38,14 +38,14 @@ INSERT IGNORE INTO `programs` (`id`, `title`, `subtitle`, `url`) VALUES
 
 -- Insert correct termine for Sommertheater 2026
 INSERT IGNORE INTO `termine` (`id`, `day_name`, `date_str`, `title`, `ticket_url`, `sold_out`) VALUES
-('t1', 'Mittwoch', '01.07.', 'Turm 20 Theater- und Kulturverein', 'https://kupfticket.com/events/romeoundjulia-9365a54ace', 0),
-('t2', 'Donnerstag', '02.07.', 'Turm 20 Theater- und Kulturverein', 'https://kupfticket.com/events/romeoundjulia-111549850d', 0),
-('t3', 'Freitag', '03.07.', 'Turm 20 Theater- und Kulturverein', 'https://kupfticket.com/events/romeoundjulia-cfb9e9b6ca', 0),
-('t4', 'Sonntag', '05.07.', 'Turm 20 Theater- und Kulturverein', 'https://kupfticket.com/events/romeoundjulia-ad3a8f4fb5', 0),
-('t5', 'Mittwoch', '08.07.', 'Turm 20 Theater- und Kulturverein', 'https://kupfticket.com/events/romeoundjulia-31bb0b0ea3', 0),
-('t6', 'Donnerstag', '09.07.', 'Turm 20 Theater- und Kulturverein', 'https://kupfticket.com/events/romeoundjulia-25504065c5', 0),
-('t7', 'Freitag', '10.07.', 'Turm 20 Theater- und Kulturverein', 'https://kupfticket.com/events/romeoundjulia-12ffd7834f', 0),
-('t8', 'Samstag', '11.07.', 'Turm 20 Theater- und Kulturverein', 'https://kupfticket.com/events/romeoundjulia-c8ad7199d9', 0);
+('t1', 'Mittwoch', '01.07.', 'Romeo & Julia', 'https://kupfticket.com/events/romeoundjulia-9365a54ace', 0),
+('t2', 'Donnerstag', '02.07.', 'Romeo & Julia', 'https://kupfticket.com/events/romeoundjulia-111549850d', 0),
+('t3', 'Freitag', '03.07.', 'Romeo & Julia', 'https://kupfticket.com/events/romeoundjulia-cfb9e9b6ca', 0),
+('t4', 'Sonntag', '05.07.', 'Romeo & Julia', 'https://kupfticket.com/events/romeoundjulia-ad3a8f4fb5', 0),
+('t5', 'Mittwoch', '08.07.', 'Romeo & Julia', 'https://kupfticket.com/events/romeoundjulia-31bb0b0ea3', 0),
+('t6', 'Donnerstag', '09.07.', 'Romeo & Julia', 'https://kupfticket.com/events/romeoundjulia-25504065c5', 0),
+('t7', 'Freitag', '10.07.', 'Romeo & Julia', 'https://kupfticket.com/events/romeoundjulia-12ffd7834f', 0),
+('t8', 'Samstag', '11.07.', 'Romeo & Julia', 'https://kupfticket.com/events/romeoundjulia-c8ad7199d9', 0);
 
 -- Insert sample hero video (you can change this via admin panel)
 -- Note: Replace 'videos/hero-video.mp4' with your actual video path after uploading
