@@ -10,7 +10,7 @@ header('Cache-Control: no-cache, must-revalidate');
 // Database config - UPDATE THESE
 $dbConfig = [
     'host' => 'mysqlsvr75.world4you.com',
-    'name' => 'turm20_Armin_Imamovic',
+    'name' => '6923870db5',
     'user' => 'sql4460592',
     'pass' => 'xr+3bg03'
 ];
