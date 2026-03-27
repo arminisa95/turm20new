@@ -21,7 +21,7 @@ $config = [
     'max_upload_size' => 500 * 1024 * 1024,  // 500MB
     'allowed_extensions' => ['mp4', 'webm', 'ogg', 'mov'],
     'db_host' => 'mysqlsvr75.world4you.com',
-    'db_name' => '6923870db5',
+    'db_name' => 'turm20neu',
     'db_user' => 'sql4460592',
     'db_pass' => 'xr+3bg03'
 ];
