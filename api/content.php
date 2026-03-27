@@ -6,6 +6,8 @@
 
 header('Content-Type: application/json');
 header('Cache-Control: no-cache, must-revalidate');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET');
 
 // Database config - UPDATE THESE
 $dbConfig = [
