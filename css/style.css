@@ -162,7 +162,7 @@ section h2,
 
 .hero-image {
     position: absolute;
-    top: calc(50% + 40px);
+    top: calc(50% + 80px);
     left: 50%;
     transform: translate(-50%, -50%) scale(1.35);
     max-width: 95vw;
