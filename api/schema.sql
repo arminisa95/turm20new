@@ -45,3 +45,8 @@ INSERT IGNORE INTO `termine` (`id`, `day_name`, `date_str`, `title`, `ticket_url
 ('t5', 'Samstag', '12.07.', 'Rotkäppchen - Premiere', 'https://kupfticket.com/shop/turm20/rotkapp', 0),
 ('t6', 'Sonntag', '13.07.', 'Rotkäppchen', 'https://kupfticket.com/shop/turm20/rotkapp', 0),
 ('t7', 'Freitag', '18.07.', 'Extras - Konzertabend', 'https://kupfticket.com/shop/turm20/extras', 0);
+
+-- Insert sample hero video (you can change this via admin panel)
+-- Note: Replace 'videos/hero-video.mp4' with your actual video path after uploading
+INSERT IGNORE INTO `videos` (`id`, `title`, `subtitle`, `url`, `is_hero`, `sort_order`) VALUES
+('hero-1', 'Turm 20', 'Theater & Kulturverein · Linz', 'videos/hero-video.mp4', 1, 0);
