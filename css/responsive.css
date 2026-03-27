@@ -23,10 +23,10 @@
     
     /* Hero Section */
     .hero-image {
-        max-width: 800px;
-        max-height: 800px;
-        width: 800px;
-        height: 800px;
+        max-width: 90vw;
+        max-height: 90vh;
+        width: 90vw;
+        height: 90vh;
     }
     
     .ticket-button {
@@ -159,10 +159,10 @@
     }
     
     .hero-image {
-        max-width: 300px;
-        max-height: 300px;
-        width: 300px;
-        height: 300px;
+        max-width: 80vw;
+        max-height: 80vh;
+        width: 80vw;
+        height: 80vh;
     }
     
     .hero-content {
@@ -364,10 +364,10 @@
     
     /* Hero Section */
     .hero-image {
-        max-width: 250px;
-        max-height: 250px;
-        width: 250px;
-        height: 250px;
+        max-width: 70vw;
+        max-height: 70vh;
+        width: 70vw;
+        height: 70vh;
     }
     
     .ticket-button {
@@ -432,9 +432,9 @@
     }
     
     .hero-image {
-        max-width: 200px;
-        max-height: 200px;
-        width: 200px;
-        height: 200px;
+        max-width: 60vw;
+        max-height: 60vh;
+        width: 60vw;
+        height: 60vh;
     }
 }
