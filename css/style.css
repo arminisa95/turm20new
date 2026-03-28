@@ -66,7 +66,7 @@ section h2,
     padding-left: 220px;
     display: flex;
     justify-content: flex-end;
-    align-items: center;
+    align-items: flex-start;
     gap: 2rem;
     height: 44px;
 }
@@ -1412,6 +1412,13 @@ font-weight: 300;
     
     .logo-image {
         height: 180px;
+    }
+
+    .hero-image {
+        width: 95vw;
+        height: 95vh;
+        max-width: 95vw;
+        max-height: 95vh;
     }
     
     .program-cards {
