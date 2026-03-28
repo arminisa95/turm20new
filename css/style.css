@@ -1420,9 +1420,9 @@ font-weight: 300;
 
     .hero-image {
         width: 100vw;
-        height: 100vh;
+        height: 100vw;
         max-width: 100vw;
-        max-height: 100vh;
+        max-height: 100vw;
     }
     
     .program-cards {
