@@ -93,7 +93,7 @@ section h2,
 }
 
 .logo-image {
-    height: 35px;
+    height: 50px;
     width: auto;
     transition: transform 0.3s ease;
     display: block;
@@ -112,12 +112,20 @@ section h2,
     padding: 0;
 }
 
+.menu li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
 .menu a {
     text-decoration: none;
     color: var(--white);
     font-weight: 500;
     transition: color 0.3s ease;
     position: relative;
+    line-height: 1;
+    display: block;
 }
 
 .menu a:hover {
@@ -165,23 +173,20 @@ section h2,
 
 .hero-image {
     position: absolute;
-    top: calc(50% + 40px);
+    top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(1.2);
-    max-width: 90vw;
-    max-height: 85vh;
-    width: 90vw;
-    height: 85vh;
+    transform: translate(-50%, -50%) scale(1.5);
+    max-width: 95vw;
+    max-height: 90vh;
+    width: 95vw;
+    height: 90vh;
     object-fit: contain;
     animation: fadeInScale 1.5s ease;
     z-index: 1;
 }
 
 .hero-content {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
     z-index: 2;
 }
 
@@ -1098,11 +1103,11 @@ footer nav a:hover {
 @keyframes fadeInScale {
     from {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(1.2);
+        transform: translate(-50%, -50%) scale(1.5);
     }
     to {
         opacity: 1;
-        transform: translate(-50%, -50%) scale(1.2);
+        transform: translate(-50%, -50%) scale(1.5);
     }
 }
 
@@ -1383,7 +1388,7 @@ font-weight: 300;
     }
     
     .logo-image {
-        height: 35px;
+        height: 50px;
     }
     
     .program-cards {
@@ -1421,7 +1426,7 @@ font-weight: 300;
     }
     
     .logo-image {
-        height: 35px;
+        height: 50px;
     }
     
     .menu {
