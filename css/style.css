@@ -63,12 +63,13 @@ section h2,
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0.1rem 2rem;
+    padding: 0 2rem;
     padding-left: 220px;
     display: flex;
     justify-content: flex-end;
-    align-items: center;
+    align-items: flex-start;
     gap: 2rem;
+    height: 100%;
 }
 
 .nav-title {
@@ -92,7 +93,7 @@ section h2,
 }
 
 .logo-image {
-    height: 45px;
+    height: 40px;
     width: auto;
     transition: transform 0.3s ease;
     display: block;
@@ -106,7 +107,9 @@ section h2,
     display: flex;
     list-style: none;
     gap: 2rem;
-    align-items: center;
+    align-items: flex-start;
+    margin-top: 0;
+    padding-top: 0;
 }
 
 .menu a {
