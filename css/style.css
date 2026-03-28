@@ -151,7 +151,7 @@ section h2,
 /* Hero Section */
 .hero {
     margin-top: 0;
-    min-height: 100vh;
+    height: 100vh;
     background: var(--dark-bg);
     display: flex;
     align-items: center;
@@ -178,9 +178,11 @@ section h2,
 }
 
 .hero-content {
-    position: relative;
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 2;
-    margin-top: 60vh;
 }
 
 .hero-content h1 {
@@ -1381,11 +1383,7 @@ font-weight: 300;
     }
     
     .logo-image {
-        height: 140px;
-    }
-    
-    .hero {
-        height: 70vh;
+        height: 35px;
     }
     
     .program-cards {
@@ -1419,11 +1417,11 @@ font-weight: 300;
     
     .logo {
         left: 0.25rem;
-        top: 5px;
+        top: 0;
     }
     
     .logo-image {
-        height: 80px;
+        height: 35px;
     }
     
     .menu {
