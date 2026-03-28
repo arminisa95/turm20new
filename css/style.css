@@ -51,6 +51,7 @@ section h2,
     top: 0;
     z-index: 1000;
     transition: background 0.3s ease;
+    height: 44px;
 }
 
 .top-bar.scrolled {
@@ -67,6 +68,7 @@ section h2,
     justify-content: flex-end;
     align-items: center;
     gap: 2rem;
+    height: 44px;
 }
 
 .nav-title {
@@ -93,11 +95,11 @@ section h2,
    .top-bar .logo has higher specificity than responsive.css .logo */
 @media (min-width: 768px) {
     .top-bar .logo {
-        position: fixed;
-        top: 10px;
-        left: 0.5rem;
-        transform: none;
-        margin: 0;
+        position: fixed !important;
+        top: 10px !important;
+        left: 0.5rem !important;
+        transform: none !important;
+        margin: 0 !important;
         display: block;
     }
     .top-bar .logo-image {
@@ -1428,7 +1430,11 @@ font-weight: 300;
 /* Mobile Devices (max-width: 767px) */
 @media (max-width: 767px) {
     /* Navigation */
+    .top-bar {
+        height: auto;
+    }
     .nav-container {
+        height: auto;
         padding: 8px 1rem;
         padding-left: 16px;
     }
