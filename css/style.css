@@ -1427,6 +1427,33 @@ font-weight: 300;
     
     .program-cards {
         grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .program-card {
+        padding: 1.5rem 1.2rem;
+        min-height: auto;
+    }
+
+    .program-card-image {
+        height: 150px;
+    }
+
+    .program-card h3 {
+        font-size: 1.2rem;
+    }
+
+    .program-card p,
+    .program-card-content p {
+        font-size: 0.9rem;
+    }
+
+    section {
+        padding: 3rem 1.5rem;
+    }
+
+    section h2 {
+        font-size: 2rem;
     }
     
     .footer-partners {
