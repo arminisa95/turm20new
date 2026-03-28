@@ -52,9 +52,6 @@ section h2,
     top: 0;
     z-index: 1000;
     transition: all 0.3s ease;
-    height: 55px;
-    display: flex;
-    align-items: flex-start;
 }
 
 .top-bar.scrolled {
@@ -63,13 +60,14 @@ section h2,
 }
 
 .nav-container {
-    width: 100%;
-    padding: 0 2rem 0 220px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    padding-left: 220px;
     display: flex;
     justify-content: flex-end;
-    align-items: flex-start;
+    align-items: center;
     gap: 2rem;
-    height: 100%;
 }
 
 .nav-title {
@@ -87,13 +85,13 @@ section h2,
 .logo {
     position: fixed;
     left: 0.5rem;
-    top: 0;
+    top: 10px;
     z-index: 1002;
     text-decoration: none;
 }
 
 .logo-image {
-    height: 100px;
+    height: 180px;
     width: auto;
     transition: transform 0.3s ease;
     display: block;
@@ -1388,7 +1386,7 @@ font-weight: 300;
     }
     
     .logo-image {
-        height: 100px;
+        height: 140px;
     }
     
     .program-cards {
@@ -1426,7 +1424,7 @@ font-weight: 300;
     }
     
     .logo-image {
-        height: 100px;
+        height: 80px;
     }
     
     .menu {
