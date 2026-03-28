@@ -1366,6 +1366,13 @@ font-weight: 300;
     .nav-container {
         padding-left: 220px;
     }
+}
+
+/* Guarantee navbar padding across ALL breakpoints (high specificity) */
+@media (max-width: 1200px) {
+    .top-bar .nav-container {
+        padding-top: 8px;
+    }
     
     .program-cards {
         grid-template-columns: repeat(3, 1fr);
@@ -1385,7 +1392,7 @@ font-weight: 300;
     }
     
     .logo-image {
-        height: 140px;
+        height: 180px;
     }
     
     .program-cards {
