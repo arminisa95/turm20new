@@ -95,8 +95,8 @@
     }
     
     .logo-image {
-        width: 40px;
-        height: 40px;
+        height: 80px;
+        width: auto;
     }
     
     .nav-title {
@@ -154,7 +154,6 @@
     
     /* Hero Section */
     .hero {
-        padding: 2rem 1rem;
         min-height: 100vh;
     }
     

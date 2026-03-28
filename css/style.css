@@ -1405,9 +1405,8 @@ font-weight: 300;
 @media (max-width: 767px) {
     /* Navigation */
     .nav-container {
-        padding: 0.75rem 1rem;
-        padding-left: 100px;
-        justify-content: space-between;
+        padding: 8px 1rem;
+        padding-left: 16px;
     }
     
     .nav-title {
@@ -1437,8 +1436,8 @@ font-weight: 300;
     
     /* Hero Section */
     .hero {
-        height: 60vh;
-        margin-top: 60px;
+        height: 100vh;
+        margin-top: 0;
     }
     
     .hero-content {
@@ -1566,8 +1565,8 @@ font-weight: 300;
     }
     
     .hero {
-        height: 50vh;
-        margin-top: 50px;
+        height: 100vh;
+        margin-top: 0;
     }
     
     .hero-content h1 {
