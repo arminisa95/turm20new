@@ -89,6 +89,23 @@ section h2,
     text-decoration: none;
 }
 
+/* Force logo to stay fixed on all tablet/desktop screens
+   .top-bar .logo has higher specificity than responsive.css .logo */
+@media (min-width: 768px) {
+    .top-bar .logo {
+        position: fixed;
+        top: 10px;
+        left: 0.5rem;
+        transform: none;
+        margin: 0;
+        display: block;
+    }
+    .top-bar .logo-image {
+        height: 180px;
+        width: auto;
+    }
+}
+
 .logo-image {
     height: 180px;
     width: auto;
