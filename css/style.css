@@ -45,7 +45,7 @@ section h2,
 
 /* Navigation */
 .top-bar {
-    background: transparent;
+    background: #F6E8B9;
     position: fixed;
     width: 100%;
     top: 0;
@@ -55,8 +55,8 @@ section h2,
 }
 
 .top-bar.scrolled {
-    background: rgba(44, 32, 19, 0.97);
-    box-shadow: 0 2px 10px rgba(44, 32, 19, 0.5);
+    background: #F6E8B9;
+    box-shadow: 0 2px 10px rgba(44, 32, 19, 0.2);
 }
 
 .nav-container {
@@ -136,7 +136,7 @@ section h2,
 
 .menu a {
     text-decoration: none;
-    color: var(--white);
+    color: #2C2013;
     font-weight: 500;
     transition: color 0.3s ease;
     position: relative;
@@ -1187,8 +1187,8 @@ footer nav a:hover {
 }
 
 .termin {
-    background: transparent;
-    border: 1px solid var(--secondary-color);
+    background: #F6E8B9;
+    border: 1px solid #2C2013;
     padding: 2rem 1.5rem;
     text-align: center;
     min-width: 180px;
@@ -1196,7 +1196,7 @@ footer nav a:hover {
 }
 
 .termin:hover {
-    border-color: var(--white);
+    border-color: var(--secondary-color);
     transform: translateY(-5px);
 }
 
@@ -1208,7 +1208,7 @@ footer nav a:hover {
 .termin p {
     font-family: 'Libre Baskerville', serif;
     font-size: 0.9rem;
-    color: var(--accent-color);
+    color: #2C2013;
     margin-top: 0.5rem;
 }
 
@@ -1216,14 +1216,14 @@ footer nav a:hover {
     font-family: 'Poppins', sans-serif;
     font-size: 1rem;
     font-weight: 600;
-    color: var(--white);
+    color: #2C2013;
     margin: 0.5rem 0;
 }
 
 .termin h4 {
     font-family: 'Poppins', sans-serif;
     font-size: 1rem;
-    color: var(--text-color);
+    color: #2C2013;
     margin-bottom: 0.5rem;
     font-weight: 400;
     text-transform: capitalize;
@@ -1232,7 +1232,7 @@ footer nav a:hover {
 .termin h3 {
     font-family: 'Poppins', sans-serif;
     font-size: clamp(1.5rem, 3vw, 2.5rem);
-    color: var(--white);
+    color: #2C2013;
     margin-bottom: 1rem;
     font-weight: 500;
 }
@@ -1240,7 +1240,7 @@ footer nav a:hover {
 .termin p {
     font-family: 'Poppins', sans-serif;
     font-size: 0.95rem;
-    color: var(--white);
+    color: #2C2013;
     margin: 0;
     font-weight: 400;
     transition: color 0.3s ease;
