@@ -45,12 +45,12 @@ section h2,
 
 /* Navigation */
 .top-bar {
-    background: rgba(44, 32, 19, 0.3);
+    background: rgba(44, 32, 19, 0.6);
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
-    transition: background 0.3s ease;
+    transition: background 1s ease;
     height: 44px;
 }
 
@@ -92,23 +92,6 @@ section h2,
     text-decoration: none;
 }
 
-/* Force logo to stay fixed on all tablet/desktop screens
-   .top-bar .logo has higher specificity than responsive.css .logo */
-@media (min-width: 768px) {
-    .top-bar .logo {
-        position: fixed !important;
-        top: 10px !important;
-        left: 0.5rem !important;
-        transform: none !important;
-        margin: 0 !important;
-        display: block;
-    }
-    .top-bar .logo-image {
-        height: 180px;
-        width: auto;
-    }
-}
-
 .logo-image {
     height: 180px;
     width: auto;
@@ -138,7 +121,7 @@ section h2,
 .menu a {
     text-decoration: none;
     color: var(--white);
-    font-weight: 500;
+    font-weight: 550;
     transition: color 0.3s ease;
     position: relative;
     line-height: 1;
@@ -269,8 +252,8 @@ section h2,
 
 .ticket-button {
     position: fixed;
-    bottom: 20px;
-    left: 20px;
+    bottom: 2px;
+    left: 2px;
     z-index: 1000;
     font-family: 'Poppins', sans-serif;
     color: var(--white);
@@ -1183,6 +1166,8 @@ footer nav a:hover {
     justify-content: center;
     gap: 1.5rem;
     padding: 2rem 0;
+    max-width: 840px;
+    margin: 0 auto;
 }
 
 .terminwrap {
@@ -1192,9 +1177,10 @@ footer nav a:hover {
 .termin {
     background: #F6E8B9;
     border: 1px solid #2C2013;
-    padding: 2rem 1.5rem;
+    padding: 1.5rem 1rem;
     text-align: center;
-    min-width: 180px;
+    min-width: 150px;
+    max-width: 160px;
     transition: all 0.3s ease;
 }
 
@@ -1206,13 +1192,6 @@ footer nav a:hover {
 .termin a {
     text-decoration: none;
     display: block;
-}
-
-.termin p {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 0.9rem;
-    color: #2C2013;
-    margin-top: 0.5rem;
 }
 
 .termin .event-title {
@@ -1269,23 +1248,20 @@ footer nav a:hover {
 }
 
 .textwrap {
-text-align: center;
-margin-bottom: 3rem;
+    text-align: center;
+    margin-bottom: 3rem;
 }
 
 .textwrap h2 {
-font-family: 'Poppins', sans-serif;
-font-size: clamp(2rem, 4vw, 3.5rem);
-color: var(--accent-color);
-margin-bottom: 1rem;
-font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    font-weight: 500;
 }
 
 .textwrap .time {
-font-family: 'Poppins', sans-serif;
-font-size: clamp(1rem, 1.5vw, 1.125rem);
-color: var(--text-color);
-font-weight: 300;
+    font-family: 'Poppins', sans-serif;
     font-size: clamp(1rem, 1.5vw, 1.125rem);
     color: var(--text-color);
     font-weight: 300;
@@ -1360,350 +1336,3 @@ font-weight: 300;
     display: block;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .menu {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: rgba(44, 32, 19, 0.98);
-        flex-direction: column;
-        padding: 1rem;
-        box-shadow: 0 5px 10px rgba(44, 32, 19, 0.5);
-    }
-
-    .menu.active {
-        display: flex;
-    }
-
-    .mobile-menu-toggle {
-        display: block;
-    }
-
-    .hero-content h1 {
-        font-size: 2rem;
-    }
-
-    .hero-content p {
-        font-size: 1.1rem;
-    }
-
-    .location-content {
-        grid-template-columns: 1fr;
-    }
-
-    section h2 {
-        font-size: 1.8rem;
-    }
-}
-
-/* ========================================
-   COMPREHENSIVE RESPONSIVE IMPROVEMENTS
-   ======================================== */
-
-/* Large Desktops (1200px+) */
-@media (min-width: 1200px) {
-    .nav-container {
-        padding-left: 220px;
-    }
-}
-
-/* Guarantee navbar padding across ALL breakpoints (high specificity) */
-@media (max-width: 1200px) {
-    .top-bar .nav-container {
-        padding-top: 8px;
-    }
-    
-    .program-cards {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-/* Tablets and Small Desktops (768px - 1199px) */
-@media (max-width: 1199px) {
-    .nav-container {
-        padding-left: 180px;
-        padding-right: 1rem;
-    }
-    
-    .nav-title {
-        left: 80px;
-        font-size: 1.5rem;
-    }
-    
-    .logo-image {
-        height: 180px;
-    }
-
-    .nav-container {
-        height: 36px;
-    }
-
-    .hero-image {
-        width: 93.1vw;
-        height: 93.1vw;
-        max-width: 93.1vw;
-        max-height: 93.1vw;
-    }
-    
-    .program-cards {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-    }
-
-    .program-card {
-        padding: 1.5rem 1.2rem;
-        min-height: auto;
-    }
-
-    .program-card-image {
-        height: 150px;
-    }
-
-    .program-card h3 {
-        font-size: 1.2rem;
-    }
-
-    .program-card p,
-    .program-card-content p {
-        font-size: 0.9rem;
-    }
-
-    section {
-        padding: 3rem 1.5rem;
-    }
-
-    section h2 {
-        font-size: 2rem;
-    }
-    
-    .footer-partners {
-        gap: 1rem;
-    }
-    
-    .footer-partner-img {
-        height: 50px;
-    }
-}
-
-/* Mobile Devices (max-width: 767px) */
-@media (max-width: 767px) {
-    /* Navigation */
-    .top-bar {
-        height: auto;
-    }
-    .nav-container {
-        height: auto;
-        padding: 8px 1rem;
-        padding-left: 16px;
-    }
-    
-    .nav-title {
-        position: static;
-        font-size: 1.1rem;
-        left: auto;
-        margin-left: 10px;
-    }
-    
-    .logo {
-        left: 0.25rem;
-        top: 0;
-    }
-    
-    .logo-image {
-        height: 80px;
-    }
-    
-    .menu {
-        gap: 0.5rem;
-    }
-    
-    .menu a {
-        font-size: 0.85rem;
-        padding: 0.4rem 0.6rem;
-    }
-    
-    /* Hero Section */
-    .hero {
-        height: 100vh;
-        margin-top: 0;
-    }
-    
-    .hero-content {
-        padding: 1rem;
-    }
-    
-    .hero-content h1 {
-        font-size: 1.6rem;
-        margin-bottom: 0.75rem;
-    }
-    
-    .hero-content p {
-        font-size: 1rem;
-    }
-    
-    /* Program Section */
-    .program-cards {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        padding: 0 1rem;
-    }
-    
-    .program-card {
-        min-height: 200px;
-    }
-    
-    .program-card-content h3 {
-        font-size: 1.5rem;
-    }
-    
-    .program-card-content p {
-        font-size: 1rem;
-    }
-    
-    /* Partner Section */
-    .partner-slider {
-        flex-direction: column;
-        gap: 1.5rem;
-    }
-    
-    .partner-member {
-        flex: 0 0 auto;
-        width: 100%;
-    }
-    
-    .slider-btn {
-        display: none;
-    }
-    
-    /* Footer */
-    .footer-partners {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.75rem;
-        padding: 1rem;
-    }
-    
-    .footer-partner-img {
-        height: 40px;
-        max-width: 100px;
-    }
-    
-    footer nav ul {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-    
-    /* Fixed Logo */
-    .fixed-logo {
-        font-size: 0.65rem;
-        padding: 0.4rem 0.6rem;
-    }
-    
-    /* Termine Section */
-    .termine-header h2 {
-        font-size: 1.6rem;
-    }
-    
-    .terminslider {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .termin {
-        min-width: auto;
-        width: 100%;
-        max-width: 300px;
-    }
-    
-    /* Team Section */
-    .textwrap h2 {
-        font-size: 1.6rem;
-    }
-    
-    .teamslider {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .teamwrap {
-        flex: 0 0 auto;
-        width: 100%;
-        max-width: 320px;
-    }
-}
-
-/* Small Mobile Devices (max-width: 480px) */
-@media (max-width: 480px) {
-    .nav-container {
-        padding-left: 80px;
-    }
-    
-    .nav-title {
-        font-size: 0.9rem;
-        display: none;
-    }
-    
-    .logo-image {
-        height: 60px;
-    }
-    
-    .menu a {
-        font-size: 0.75rem;
-        padding: 0.3rem 0.5rem;
-    }
-    
-    .hero {
-        height: 100vh;
-        margin-top: 0;
-    }
-    
-    .hero-content h1 {
-        font-size: 1.3rem;
-    }
-    
-    .hero-content p {
-        font-size: 0.9rem;
-    }
-    
-    section {
-        padding: 2rem 1rem;
-    }
-    
-    section h2 {
-        font-size: 1.4rem;
-    }
-    
-    .program-card-content h3 {
-        font-size: 1.2rem;
-    }
-    
-    .footer-partner-img {
-        height: 30px;
-    }
-}
-
-/* Landscape Mode on Mobile */
-@media (max-height: 500px) and (orientation: landscape) {
-    .hero {
-        height: 80vh;
-    }
-    
-    .nav-container {
-        padding: 0.5rem 1rem;
-        padding-left: 100px;
-    }
-    
-    .logo-image {
-        height: 70px;
-    }
-}
-
-/* High DPI / Retina Displays */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    .logo-image {
-        image-rendering: -webkit-optimize-contrast;
-    }
-}
