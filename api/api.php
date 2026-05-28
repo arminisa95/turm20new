@@ -128,6 +128,8 @@ function handleGetContent($config) {
             'id' => $row['id'],
             'day' => $row['day_name'],
             'date' => $row['date_str'],
+            'rawDate' => $row['date'] ?? '', // Fuer Google Event Structured Data
+            'time' => $row['time_str'] ?? '',
             'title' => $row['title'],
             'ticketUrl' => $row['ticket_url'],
             'soldOut' => (bool)$row['sold_out']
@@ -177,7 +179,10 @@ function handleSaveContent($config) {
     $auth = getBearerToken();
     if ($auth !== $config['upload_secret']) {
         http_response_code(401);
-        jsonResponse(['success' => false, 'error' => 'Unauthorized']);
+        jsonResponse([
+            'success' => false, 
+            'error' => 'Unauthorized. Server erwartet: "' . $config['upload_secret'] . '", erhalten: "' . $auth . '". Falls leer, hast du api.php nicht hochgeladen!'
+        ]);
     }
 
     $input = json_decode(file_get_contents('php://input'), true);
@@ -192,10 +197,10 @@ function handleSaveContent($config) {
         // Save termine
         if (isset($input['termine'])) {
             $pdo->exec("DELETE FROM termine");
-            $stmt = $pdo->prepare("INSERT INTO termine (id, day_name, date_str, title, ticket_url, sold_out) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt = $pdo->prepare("INSERT INTO termine (id, day_name, date_str, time_str, title, ticket_url, sold_out) VALUES (?, ?, ?, ?, ?, ?, ?)");
             foreach ($input['termine'] as $t) {
                 $stmt->execute([
-                    $t['id'], $t['day'], $t['date'], $t['title'], $t['ticketUrl'], $t['soldOut'] ? 1 : 0
+                    $t['id'], $t['day'], $t['date'], $t['time'] ?? '', $t['title'], $t['ticketUrl'], $t['soldOut'] ? 1 : 0
                 ]);
             }
         }
@@ -284,6 +289,17 @@ function getDB($config) {
         $dsn = "mysql:host={$config['db_host']};dbname={$config['db_name']};charset=utf8mb4";
         $pdo = new PDO($dsn, $config['db_user'], $config['db_pass']);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        // Automatisches DB-Upgrade: Spalte time_str hinzufügen falls sie noch nicht existiert
+        try {
+            $pdo->query("SELECT time_str FROM termine LIMIT 1");
+        } catch (PDOException $e) {
+            try {
+                $pdo->exec("ALTER TABLE termine ADD COLUMN time_str VARCHAR(50) DEFAULT '' AFTER date_str");
+            } catch (PDOException $ex) {
+                // Ignore failure if already exists or fails
+            }
+        }
     }
     return $pdo;
 }
@@ -292,11 +308,29 @@ function getDB($config) {
  * Get Bearer token from Authorization header
  */
 function getBearerToken() {
+    // Fallback 1: getallheaders()
     $headers = getallheaders();
-    $auth = $headers['Authorization'] ?? '';
-    if (preg_match('/Bearer\s+(.*)$/i', $auth, $matches)) {
+    $auth = $headers['Authorization'] ?? $headers['authorization'] ?? '';
+    
+    // Fallback 2: $_SERVER HTTP_AUTHORIZATION (oft bei CGI/FastCGI)
+    if (empty($auth) && isset($_SERVER['HTTP_AUTHORIZATION'])) {
+        $auth = $_SERVER['HTTP_AUTHORIZATION'];
+    }
+    
+    // Fallback 3: $_SERVER REDIRECT_HTTP_AUTHORIZATION (oft bei Apache Umleitungen)
+    if (empty($auth) && isset($_SERVER['REDIRECT_HTTP_AUTHORIZATION'])) {
+        $auth = $_SERVER['REDIRECT_HTTP_AUTHORIZATION'];
+    }
+
+    if (!empty($auth) && preg_match('/Bearer\s+(.*)$/i', $auth, $matches)) {
         return $matches[1];
     }
+    
+    // Fallback 4: Query Parameter (100% sicher gegen Apache Header-Stripping)
+    if (isset($_GET['token']) && !empty($_GET['token'])) {
+        return $_GET['token'];
+    }
+    
     return '';
 }
 

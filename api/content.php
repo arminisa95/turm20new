@@ -35,6 +35,7 @@ try {
             'id' => $row['id'],
             'day' => $row['day_name'],
             'date' => $row['date_str'],
+            'time' => $row['time_str'] ?? '',
             'title' => $row['title'],
             'ticketUrl' => $row['ticket_url'],
             'soldOut' => (bool)$row['sold_out']

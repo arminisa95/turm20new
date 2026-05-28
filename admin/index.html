@@ -343,9 +343,18 @@ async function login() {
     const err = document.getElementById('login-error');
     token = inp.value.trim();
     if (!token) { err.textContent = 'Bitte Upload-Secret eingeben.'; return; }
-    err.textContent = '';
+    
     const btn = document.querySelector('.btn-login');
     btn.textContent = 'Prüfe…'; btn.disabled = true;
+
+    // Direkt-Validierung gegen das Passwort, da es ohnehin im HTML als Hint steht
+    if (token !== 'Limbic3000') {
+        err.textContent = 'Falsches Passwort! Bitte verwende "Limbic3000".';
+        btn.textContent = 'Anmelden'; btn.disabled = false;
+        return;
+    }
+
+    err.textContent = '';
 
     try {
         await loadFromPHP();
@@ -386,17 +395,19 @@ async function saveAll() {
     const btn = document.getElementById('save-btn');
     btn.textContent = 'Speichert…'; btn.disabled = true;
     try {
-        const res = await fetch(`${API_BASE}/api.php?action=save_content`, {
+        const res = await fetch(`${API_BASE}/api.php?action=save_content&token=${encodeURIComponent(token)}`, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
         });
-        if (!res.ok) throw new Error('Save failed');
+        if (!res.ok) {
+            const errText = await res.text().catch(() => '');
+            throw new Error(`HTTP ${res.status} - ${errText || 'Server-Fehler'}`);
+        }
         const result = await res.json();
-        if (!result.success) throw new Error(result.error || 'Save failed');
+        if (!result.success) throw new Error(result.error || 'Server meldet Erfolg: false');
         
         dirty = false;
         showToast('Gespeichert! Änderungen sind sofort live.', 'success');
@@ -432,6 +443,7 @@ function renderTermine() {
                 <tr>
                     <th>Tag</th>
                     <th>Datum</th>
+                    <th>Uhrzeit</th>
                     <th>Stück</th>
                     <th>Ticket URL</th>
                     <th>Status</th>
@@ -443,6 +455,7 @@ function renderTermine() {
                 <tr>
                     <td>${t.day}</td>
                     <td><strong>${t.date}</strong></td>
+                    <td>${t.time || '—'}</td>
                     <td>${t.title}</td>
                     <td><span class="ticket-url" title="${t.ticketUrl}">${t.ticketUrl}</span></td>
                     <td>${t.soldOut
@@ -502,7 +515,7 @@ const DAYS = ['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','S
 
 function openTerminModal(idx) {
     const isEdit = idx !== undefined;
-    const t = isEdit ? data.termine[idx] : { day:'Mittwoch', date:'', title:'', ticketUrl:'', soldOut:false };
+    const t = isEdit ? data.termine[idx] : { day:'Mittwoch', date:'', time:'', title:'', ticketUrl:'', soldOut:false };
     openModal(`
         <h2>${isEdit ? 'Termin bearbeiten' : 'Neuer Termin'}</h2>
         <div class="form-group">
@@ -514,6 +527,10 @@ function openTerminModal(idx) {
         <div class="form-group">
             <label>Datum (z.B. 01.07.)</label>
             <input id="f-date" type="text" value="${t.date}" placeholder="01.07." />
+        </div>
+        <div class="form-group">
+            <label>Uhrzeit (z.B. 19:30 Uhr)</label>
+            <input id="f-time" type="text" value="${t.time || ''}" placeholder="19:30 Uhr" />
         </div>
         <div class="form-group">
             <label>Stückname</label>
@@ -541,6 +558,7 @@ function saveTermin(idx) {
         id:        idx !== null ? data.termine[idx].id : 't' + Date.now(),
         day:       document.getElementById('f-day').value,
         date:      document.getElementById('f-date').value.trim(),
+        time:      document.getElementById('f-time').value.trim(),
         title:     document.getElementById('f-title').value.trim(),
         ticketUrl: document.getElementById('f-url').value.trim(),
         soldOut:   document.getElementById('f-soldout').checked
@@ -794,11 +812,8 @@ async function handleFileUpload(input, type) {
     formData.append('file', file);
 
     try {
-        const res = await fetch(`${API_BASE}/api.php?action=upload`, {
+        const res = await fetch(`${API_BASE}/api.php?action=upload&token=${encodeURIComponent(token)}`, {
             method: 'POST',
-            headers: {
-                'Authorization': 'Bearer ' + token
-            },
             body: formData
         });
 

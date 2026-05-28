@@ -30,7 +30,7 @@ h2 {
     color: var(--accent-color) !important;
 }
 
-/* Force all section headers to be yellow */
+/* Force all section headers to be yellow, modern, large and identical */
 section h2,
 .partner-header h2,
 .team-header h2,
@@ -40,7 +40,12 @@ section h2,
 #kontakt h2,
 #location h2,
 #waswar h2 {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: clamp(2rem, 5vw, 3.5rem) !important;
     color: var(--accent-color) !important;
+    text-align: center !important;
+    margin-bottom: 2rem !important;
+    font-weight: 600 !important;
 }
 
 /* Navigation */
@@ -252,8 +257,8 @@ section h2,
 
 .ticket-button {
     position: fixed;
-    bottom: 2px;
-    left: 2px;
+    bottom: 6px; /* 4px nach oben geschoben (vorher 2px) */
+    left: 0.5rem; /* Exakt derselbe linke Abstand wie das Logo oben links (0.5rem = 8px) */
     z-index: 1000;
     font-family: 'Poppins', sans-serif;
     color: var(--white);
@@ -288,29 +293,32 @@ section h2,
     color: var(--accent-color);
 }
 
-/* Program Cards */
+/* Program Cards - Modern 2x2 Grid */
 .program-cards {
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-    flex-wrap: wrap;
-    max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    justify-items: center;
+    max-width: 500px;
     margin: 0 auto;
 }
 
 .program-card {
-    flex: 0 0 250px;
-    width: 250px;
-    max-width: 250px;
-    min-height: 250px;
-    max-height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 220px;
+    height: 260px; /* Perfekt genormte, einheitliche Höhe für alle Boxen */
     background: rgba(255, 255, 255, 0.05);
     border: 2px solid rgba(246, 232, 185, 0.3);
-    padding: 3rem 2rem;
+    padding: 1rem 0.8rem;
     text-align: center;
     text-decoration: none;
     transition: all 0.3s ease;
     cursor: pointer;
+    border-radius: 0;
+    box-sizing: border-box;
 }
 
 .program-card:hover {
@@ -322,18 +330,34 @@ section h2,
 
 .program-card h3 {
     font-family: 'Poppins', sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.05rem;
     font-weight: 600;
     color: var(--accent-color);
-    margin-bottom: 1rem;
+    margin: 0;
+    line-height: 1.2;
 }
 
 .program-card p {
     font-family: 'Poppins', sans-serif;
-    font-size: 0.95rem;
+    font-size: 0.8rem;
     color: var(--text-color);
     font-weight: 300;
-    line-height: 1.6;
+    line-height: 1.3;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 34px; /* Feste genormte Höhe für 2 Zeilen Text, damit alles exakt auf einer Linie ist */
+    width: 100%;
+    overflow: hidden;
+}
+
+.program-card-image {
+    width: 100%;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 0;
+    margin: auto 0;
 }
 
 /* Sections */
@@ -383,19 +407,19 @@ section p {
 
 .partner-slider-container {
     position: relative;
-    max-width: 600px;
+    max-width: 480px;
     margin: 0 auto;
-    padding: 0 80px;
+    padding: 0 50px;
 }
 
 .partner-slider {
     display: flex;
     transition: transform 0.5s ease;
-    gap: 2rem;
+    gap: 1.2rem;
 }
 
 .partner-member {
-    flex: 0 0 340px;
+    flex: 0 0 240px;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -410,18 +434,18 @@ section p {
 }
 
 .partner-member img {
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
     object-fit: contain;
     object-position: center;
-    border-radius: 12px;
-    margin-bottom: 1rem;
+    border-radius: 0;
+    margin-bottom: 0.8rem;
     transition: all 0.3s ease;
     background: rgba(212, 168, 67, 0.18);
-    padding: 1rem;
+    padding: 0.8rem;
     box-sizing: border-box;
     border: 2px solid rgba(212, 168, 67, 0.4);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .partner-member:hover img {
@@ -434,15 +458,15 @@ section p {
     display: block;
     color: var(--white);
     font-weight: 600;
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
 }
 
 .slider-controls {
     display: flex;
     justify-content: center;
-    gap: 1.5rem;
-    margin-top: 1.5rem;
+    gap: 1rem;
+    margin-top: 1rem;
 }
 
 .slider-btn {
@@ -477,6 +501,14 @@ section p {
     padding: 1rem 0;
 }
 
+.footer-partners a {
+    display: inline-block;
+    line-height: 0;
+    text-decoration: none;
+    border: none;
+    outline: none;
+}
+
 .footer-partner-img {
     max-width: 60px;
     max-height: 30px;
@@ -487,7 +519,7 @@ section p {
     transition: all 0.3s ease;
 }
 
-.footer-partner-img:hover {
+.footer-partners a:hover .footer-partner-img {
     filter: brightness(0.9);
     transform: scale(1.1);
 }
@@ -849,10 +881,10 @@ section p {
     margin-top: 3rem;
 }
 
-.program-card {
+.program-grid .program-card {
     background: rgba(212, 168, 67, 0.2);
     border: 1px solid rgba(212, 168, 67, 0.3);
-    border-radius: 10px;
+    border-radius: 0;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(44, 32, 19, 0.5);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -864,9 +896,9 @@ section p {
     border-color: rgba(212, 168, 67, 0.6);
 }
 
-.program-card-image {
+.program-grid .program-card-image {
     width: 100%;
-    height: 200px;
+    height: 75px;
     background: linear-gradient(135deg, rgba(212, 168, 67, 0.4), rgba(246, 232, 185, 0.2));
     display: flex;
     align-items: center;
@@ -875,17 +907,19 @@ section p {
     color: var(--white);
 }
 
-.program-card-content {
-    padding: 1.5rem;
+.program-grid .program-card-content {
+    padding: 0.6rem 0.5rem;
 }
 
-.program-card h3 {
-    margin-bottom: 0.5rem;
+.program-grid .program-card h3 {
+    margin-bottom: 0.2rem;
     color: var(--white);
+    font-size: 0.95rem;
 }
 
-.program-card p {
+.program-grid .program-card p {
     color: var(--text-color);
+    font-size: 0.75rem;
 }
 
 /* Foto Show Section */
@@ -1166,12 +1200,17 @@ footer nav a:hover {
     justify-content: center;
     gap: 1.5rem;
     padding: 2rem 0;
+    width: 100%;
     max-width: 840px;
     margin: 0 auto;
+    min-height: 220px;
+    align-content: flex-start;
+    box-sizing: border-box;
 }
 
 .terminwrap {
-    flex: 0 1 auto;
+    flex: 0 0 150px;
+    width: 150px;
 }
 
 .termin {
@@ -1179,8 +1218,13 @@ footer nav a:hover {
     border: 1px solid #2C2013;
     padding: 1.5rem 1rem;
     text-align: center;
-    min-width: 150px;
-    max-width: 160px;
+    width: 150px;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
     transition: all 0.3s ease;
 }
 
@@ -1191,7 +1235,12 @@ footer nav a:hover {
 
 .termin a {
     text-decoration: none;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 }
 
 .termin .event-title {
@@ -1236,6 +1285,21 @@ footer nav a:hover {
 #team {
     background-color: var(--dark-bg);
     padding: 5rem 2rem;
+}
+
+/* Turm20 Image */
+.turm20-image-container {
+    text-align: center;
+    margin: 1rem auto 2rem;
+    max-width: 600px;
+}
+
+.turm20-image {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .teamsilderfield {
@@ -1334,5 +1398,133 @@ footer nav a:hover {
     font-weight: 500;
     color: var(--white);
     display: block;
+}
+
+/* ===== Termin Monatsgruppen ===== */
+.termin-gruppe {
+    width: 100%;
+    margin-bottom: 2.5rem;
+    text-align: left;
+}
+
+.termin-monat {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--secondary-color) !important;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--secondary-color);
+    display: block;
+}
+
+.termin-gruppe-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: stretch;
+}
+
+/* ===== Team Fotoshow ===== */
+.fotoshow-section {
+    padding: 4rem 0 3rem;
+    background: var(--dark-bg);
+    overflow: hidden;
+}
+
+.fotoshow-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.fotoshow-header h2 {
+    font-size: 2rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.fotoshow-slider {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+}
+
+.fotoshow-track {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+.fotoshow-slide {
+    min-width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: #1a1208;
+}
+
+.fotoshow-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.fotoshow-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(44, 32, 19, 0.7);
+    border: 1px solid var(--secondary-color);
+    color: var(--secondary-color);
+    font-size: 2.5rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: background 0.2s, color 0.2s;
+    line-height: 1;
+}
+
+.fotoshow-btn:hover {
+    background: var(--secondary-color);
+    color: var(--dark-bg);
+}
+
+.fotoshow-prev { left: 12px; }
+.fotoshow-next { right: 12px; }
+
+.fotoshow-dots {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.fotoshow-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(246, 232, 185, 0.4);
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.fotoshow-dot.active {
+    background: var(--secondary-color);
+    transform: scale(1.3);
 }
 

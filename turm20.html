@@ -7,8 +7,31 @@
     <title>Turm20 - Theater & Kulturverein Linz</title>
     <meta name="description" content="Turm 20 – Theater- und Kulturverein am Fuße des Pöstlingbergs in Linz. Erfahren Sie mehr über uns, unsere Geschichte und unser Team.">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Serif+Display:ital,wght@0,300;0,400;1,300&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/style.css?v=202605285">
+    <link rel="stylesheet" href="css/responsive.css?v=202605285">
+    
+    <!-- Favicon & Touch Icons -->
+    <link rel="shortcut icon" href="img/logo/Zeichenflaeche-1-300x300.png" type="image/png">
+    <link rel="icon" type="image/png" href="img/logo/Zeichenflaeche-1-300x300.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="img/logo/Zeichenflaeche-1-300x300.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="img/logo/Zeichenflaeche-1-300x300.png" sizes="48x48">
+    <link rel="icon" type="image/png" href="img/logo/Zeichenflaeche-1-300x300.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="img/logo/Zeichenflaeche-1-300x300.png" sizes="192x192">
+    <link rel="apple-touch-icon" href="img/logo/Zeichenflaeche-1-300x300.png">
+    <!-- Matomo -->
+    <script>
+      var _paq = window._paq = window._paq || [];
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="//sommertheaterlinz.at/matomo/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <!-- End Matomo Code -->
 </head>
 <body id="top">
     <!-- Navigation -->
@@ -41,6 +64,36 @@
             <p></p>
         </div>
         <div class="video-hero-scroll">Scroll</div>
+    </section>
+
+    <!-- Team Fotoshow -->
+    <section id="fotoshow" class="fotoshow-section">
+        <div class="fotoshow-header">
+            <h2>Unser Team</h2>
+        </div>
+        <div class="fotoshow-slider">
+            <div class="fotoshow-track" id="fotoshowTrack">
+                <div class="fotoshow-slide"><img src="img/team/DSC_0098_1PhilAnca-scaled.jpg" alt="Team"></div>
+                <div class="fotoshow-slide"><img src="img/team/DSC_0124_1David-scaled.jpg" alt="Team"></div>
+                <div class="fotoshow-slide"><img src="img/team/DSC_0141_1Martin-scaled.jpg" alt="Team"></div>
+                <div class="fotoshow-slide"><img src="img/team/DSC_0160Michi-scaled.jpg" alt="Team"></div>
+                <div class="fotoshow-slide"><img src="img/team/DSC_8667-contrato-phil-tobi-scaled.jpg" alt="Team"></div>
+                <div class="fotoshow-slide"><img src="img/team/DSC_8691-aris-martin-scaled.jpg" alt="Team"></div>
+                <div class="fotoshow-slide"><img src="img/team/crew18-michi.jpg" alt="Team"></div>
+                <div class="fotoshow-slide"><img src="img/team/crew21-.jpg" alt="Team"></div>
+                <div class="fotoshow-slide"><img src="img/team/Bas.jpg" alt="Team"></div>
+                <div class="fotoshow-slide"><img src="img/team/Panorama-VLUN-24-274x300.jpg" alt="Team"></div>
+                <div class="fotoshow-slide"><img src="img/team/viel-laerm-um-nichts-limbic3000_matthias-kreuzer1-scaled-e1713359705701.jpg" alt="Team"></div>
+                <div class="fotoshow-slide"><img src="img/team/turm_vogel.jpeg" alt="Turm"></div>
+            </div>
+            <button class="fotoshow-btn fotoshow-prev" onclick="moveSlide(-1)" aria-label="Vorheriges Bild">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="display: block; transform: translateX(-1px);"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>
+            <button class="fotoshow-btn fotoshow-next" onclick="moveSlide(1)" aria-label="Nächstes Bild">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="display: block; transform: translateX(1px);"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+            <div class="fotoshow-dots" id="fotoshowDots"></div>
+        </div>
     </section>
 
     <!-- Turm20 Section -->
@@ -83,16 +136,15 @@
     <!-- Footer -->
     <footer>
         <div class="footer-partners">
-            <img src="img/partner/fitzinger.png" alt="Fitzinger" class="footer-partner-img">
-            <img src="img/partner/lehner-1.png" alt="Lehner" class="footer-partner-img">
-            <img src="img/partner/mayer.png" alt="Mayer" class="footer-partner-img">
-            <img src="img/partner/rosso.png" alt="Rosso" class="footer-partner-img">
-            <img src="img/partner/sinzinger.png" alt="Sinzinger" class="footer-partner-img">
-            <img src="img/partner/seca.png" alt="SECA" class="footer-partner-img">
-            <img src="img/partner/ars.png" alt="ARS" class="footer-partner-img">
-            <img src="img/partner/linzag_website-1.png" alt="LINZAG" class="footer-partner-img">
-            <img src="img/partner/Linz_CD_Logo__Linz_Kultur_Schutzzone-scaled-e1719396165985.jpg" alt="Linz Kultur Schutzzone" class="footer-partner-img">
-            <img src="img/partner/land_website-1.png" alt="Land OÖ" class="footer-partner-img">
+            <a href="https://www.linzag.at" target="_blank"><img src="img/partner/linzag_website-1.png" alt="Linz AG" class="footer-partner-img"></a>
+            <a href="https://www.traussner-bau.at/" target="_blank"><img src="img/partner/traussner-bau-logo-dark-blue-1.png" alt="Traussner Bau" class="footer-partner-img"></a>
+            <a href="https://www.brillinger-druck.at/" target="_blank"><img src="img/partner/brillingr.png" alt="Brillinger" class="footer-partner-img"></a>
+            <a href="https://ars.electronica.art/center/de/" target="_blank"><img src="img/partner/ars.png" alt="ARS" class="footer-partner-img"></a>
+            <a href="https://www.linz.at/kultur" target="_blank"><img src="img/partner/Linz_CD_Logo__Linz_Kultur_Schutzzone-scaled-e1719396165985.jpg" alt="Linz Kultur" class="footer-partner-img"></a>
+            <a href="https://www.seca.at" target="_blank"><img src="img/partner/seca.png" alt="SECA" class="footer-partner-img"></a>
+            <a href="https://sunnyhillranch.at/content/inhalte/verkauf/index_ger.html" target="_blank"><img src="img/partner/mayer.png" alt="Sunny Hill Ranch" class="footer-partner-img"></a>
+            <a href="https://www.oberbank.at" target="_blank"><img src="img/partner/Oberbank.jpg" alt="Oberbank" class="footer-partner-img"></a>
+            <a href="https://www.karl-sinzinger.at" target="_blank"><img src="img/partner/sinzinger.png" alt="Sinzinger" class="footer-partner-img"></a>
         </div>
         <nav>
             <ul>
@@ -100,11 +152,51 @@
                 <li><a href="datenschutz.html">Datenschutz</a></li>
             </ul>
         </nav>
-        <p>&copy; 2026 Sommertheater am Turm 20.</p>
+        <p>&copy; 2026 Sommertheater am Turm 20. | Erstellt von <a href="https://arminisa95.github.io/portfolio_armin_imamovic/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-color); text-decoration: none; transition: color 0.3s ease; display: inline-flex; align-items: center; gap: 5px; vertical-align: middle;">blaupause<img src="blaupause/blaupause_logo.png" alt="blaupause Logo" style="height: 0.95em; width: auto; display: inline-block;"></a></p>
     </footer>
 
     <script src="js/script.js"></script>
     <script src="js/content-loader.js"></script>
+    <script>
+        (function() {
+            var current = 0;
+            var track = document.getElementById('fotoshowTrack');
+            var slides = track ? track.querySelectorAll('.fotoshow-slide') : [];
+            var dotsContainer = document.getElementById('fotoshowDots');
+            var total = slides.length;
+            var autoTimer;
+
+            function buildDots() {
+                if (!dotsContainer) return;
+                dotsContainer.innerHTML = '';
+                for (var i = 0; i < total; i++) {
+                    var d = document.createElement('button');
+                    d.className = 'fotoshow-dot' + (i === 0 ? ' active' : '');
+                    d.setAttribute('aria-label', 'Bild ' + (i + 1));
+                    (function(idx) { d.onclick = function() { goTo(idx); }; })(i);
+                    dotsContainer.appendChild(d);
+                }
+            }
+
+            function goTo(idx) {
+                current = (idx + total) % total;
+                if (track) track.style.transform = 'translateX(-' + (current * 100) + '%)';
+                var dots = dotsContainer ? dotsContainer.querySelectorAll('.fotoshow-dot') : [];
+                dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
+                resetAuto();
+            }
+
+            function resetAuto() {
+                clearInterval(autoTimer);
+                autoTimer = setInterval(function() { goTo(current + 1); }, 4000);
+            }
+
+            window.moveSlide = function(dir) { goTo(current + dir); };
+
+            buildDots();
+            resetAuto();
+        })();
+    </script>
 
 <!-- Fixed Bottom Left Ticket Button -->
 <a href="index.html#termine" class="ticket-button">
